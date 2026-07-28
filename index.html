@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HFL^2</title>
-<link rel="stylesheet" href="assets/style.css">
+<!-- Bump the ?v= query param on style.css/app.js whenever either changes, so
+     browsers/CDN caches that haven't seen the new version don't keep serving
+     stale assets after a deploy. -->
+<link rel="stylesheet" href="assets/style.css?v=2">
 </head>
 <body>
 
@@ -157,6 +160,6 @@
 
 </main>
 
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=2"></script>
 </body>
 </html>
