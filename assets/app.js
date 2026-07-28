@@ -32,12 +32,27 @@ async function fetchJSON(path) {
   return res.json();
 }
 
+let currentNames = {};
+
+async function loadCurrentNames() {
+  try {
+    const overview = await fetchJSON(`${DATA_DIR}/historical_overview.json`);
+    currentNames = overview.current_names || {};
+  } catch (e) {
+    currentNames = {};
+  }
+}
+
 function teamName(user) {
   return (user && user.metadata && user.metadata.team_name) || (user && user.display_name) || "Unknown";
 }
 
+// Always shows a manager's most current known Sleeper display_name, not
+// whatever name they had in the season being viewed, so someone who's
+// renamed is recognizable everywhere on the site.
 function managerName(user) {
-  return (user && user.display_name) || "Unknown";
+  if (!user) return "Unknown";
+  return currentNames[user.user_id] || user.display_name || "Unknown";
 }
 
 function buildStandings(rosters, usersByUserId) {
@@ -239,6 +254,11 @@ async function initOverviewTab() {
   document.getElementById("overview-content").classList.remove("hidden");
 }
 
-loadHomeStatus();
-initHistoryTab();
-initOverviewTab();
+async function init() {
+  await loadCurrentNames();
+  loadHomeStatus();
+  initHistoryTab();
+  initOverviewTab();
+}
+
+init();
