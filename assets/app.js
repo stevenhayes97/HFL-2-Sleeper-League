@@ -36,9 +36,14 @@ let currentNames = {};
 let overviewPromise = null;
 
 // Several tabs read this same file; fetch it once and share the result.
+// On failure, the cached promise is cleared so the next caller gets a fresh
+// attempt instead of a permanently-rejected promise from one bad request.
 function loadOverview() {
   if (!overviewPromise) {
-    overviewPromise = fetchJSON(`${DATA_DIR}/historical_overview.json`);
+    overviewPromise = fetchJSON(`${DATA_DIR}/historical_overview.json`).catch((err) => {
+      overviewPromise = null;
+      throw err;
+    });
   }
   return overviewPromise;
 }
@@ -223,7 +228,14 @@ function scoreCell(entry) {
 }
 
 async function initOverviewTab() {
-  const overview = await loadOverview();
+  const loading = document.getElementById("overview-loading");
+  let overview;
+  try {
+    overview = await loadOverview();
+  } catch (e) {
+    loading.textContent = `Couldn't load data: ${e.message}. Check your connection and reload.`;
+    return;
+  }
 
   const yearsBody = document.querySelector("#overview-years-table tbody");
   yearsBody.innerHTML = overview.years
@@ -259,7 +271,7 @@ async function initOverviewTab() {
     )
     .join("");
 
-  document.getElementById("overview-loading").classList.add("hidden");
+  loading.classList.add("hidden");
   document.getElementById("overview-content").classList.remove("hidden");
 }
 
@@ -293,12 +305,30 @@ function renderPointsTable(tableId, seasonPoints, key, totalKey) {
 }
 
 async function initPointsTabs() {
-  const overview = await loadOverview();
+  const forStatus = document.getElementById("points-for-status");
+  const againstStatus = document.getElementById("points-against-status");
+
+  let overview;
+  try {
+    overview = await loadOverview();
+  } catch (e) {
+    const message = `Couldn't load data: ${e.message}. Check your connection and reload.`;
+    forStatus.textContent = message;
+    againstStatus.textContent = message;
+    return;
+  }
+
   const seasonPoints = overview.season_points;
-  if (!seasonPoints) return;
+  if (!seasonPoints) {
+    forStatus.textContent = "No points data available yet.";
+    againstStatus.textContent = "No points data available yet.";
+    return;
+  }
 
   renderPointsTable("points-for-table", seasonPoints, "for", "total_for");
   renderPointsTable("points-against-table", seasonPoints, "against", "total_against");
+  forStatus.classList.add("hidden");
+  againstStatus.classList.add("hidden");
 }
 
 async function init() {
