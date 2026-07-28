@@ -1,0 +1,23 @@
+{
+  "_readme": "Maps each Sleeper user_id to the manager's real first name, for potential future display on the site. This is reference data only right now - build_overview.py does NOT read this file, so the site still shows Sleeper usernames everywhere (League History, Historical Overview, Points For/Against). Wire it in later (e.g. as a display_name source alongside current_names in build_overview.py) whenever ready to switch over.",
+  "real_names": {
+    "861012415062601728": "Steven",
+    "470710996982296576": "Brett",
+    "865784499802357760": "Brian",
+    "471379275656720384": "Ryan",
+    "738274301626740736": "Tucker",
+    "999411623972442112": "Flawless",
+    "859698267162787840": "Abby",
+    "470779963310600192": "Nick",
+    "862888169446682624": "Kad",
+    "993271725775175680": "Isaac",
+    "1253426395581788160": "Lawson",
+    "743367607524126720": "Nacho",
+    "1121987861147906048": "Logan",
+    "1252841762464989184": "Elena",
+    "756019433033785344": "Star",
+    "332049565748326400": "Anthony",
+    "471534616600113152": "Dallas",
+    "475101158801666048": "Andy"
+  }
+}
