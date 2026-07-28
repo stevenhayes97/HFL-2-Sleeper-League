@@ -123,66 +123,73 @@ async function renderSeason(season) {
   const tables = document.getElementById("history-tables");
 
   loading.classList.remove("hidden");
+  loading.textContent = "Loading season data…";
   notStarted.classList.add("hidden");
   tables.classList.add("hidden");
 
-  const dir = `${DATA_DIR}/${season}`;
-  const [league, users, rosters, bracket] = await Promise.all([
-    fetchJSON(`${dir}/league.json`),
-    fetchJSON(`${dir}/users.json`),
-    fetchJSON(`${dir}/rosters.json`),
-    fetchJSON(`${dir}/winners_bracket.json`),
-  ]);
+  try {
+    const dir = `${DATA_DIR}/${season}`;
+    const [league, users, rosters, bracket] = await Promise.all([
+      fetchJSON(`${dir}/league.json`),
+      fetchJSON(`${dir}/users.json`),
+      fetchJSON(`${dir}/rosters.json`),
+      fetchJSON(`${dir}/winners_bracket.json`),
+    ]);
 
-  loading.classList.add("hidden");
+    loading.classList.add("hidden");
 
-  const seasonBegun = league.status !== "pre_draft" && league.status !== "drafting";
-  if (!seasonBegun) {
-    notStarted.classList.remove("hidden");
-    return;
-  }
+    const seasonBegun = league.status !== "pre_draft" && league.status !== "drafting";
+    if (!seasonBegun) {
+      notStarted.classList.remove("hidden");
+      return;
+    }
 
-  const usersByUserId = {};
-  users.forEach((u) => (usersByUserId[u.user_id] = u));
+    const usersByUserId = {};
+    users.forEach((u) => (usersByUserId[u.user_id] = u));
 
-  const standings = buildStandings(rosters, usersByUserId);
-  const standingsBody = document.querySelector("#standings-table tbody");
-  standingsBody.innerHTML = standings
-    .map(
-      (row, i) => `
-        <tr>
-          <td>${i + 1}</td>
-          <td>${row.team}</td>
-          <td>${row.manager}</td>
-          <td>${row.wins}-${row.losses}${row.ties ? `-${row.ties}` : ""}</td>
-          <td>${row.fpts.toFixed(2)}</td>
-          <td>${row.fptsAgainst.toFixed(2)}</td>
-        </tr>`
-    )
-    .join("");
-
-  const placements = buildPlayoffPlacements(bracket, rosters, usersByUserId);
-  const playoffNotStarted = document.getElementById("playoff-not-started");
-  const playoffTableWrap = document.getElementById("playoff-table-wrap");
-
-  if (placements.length === 0) {
-    playoffNotStarted.classList.remove("hidden");
-    playoffTableWrap.classList.add("hidden");
-  } else {
-    playoffNotStarted.classList.add("hidden");
-    playoffTableWrap.classList.remove("hidden");
-
-    const playoffBody = document.querySelector("#playoff-table tbody");
-    playoffBody.innerHTML = placements
+    const standings = buildStandings(rosters, usersByUserId);
+    const standingsBody = document.querySelector("#standings-table tbody");
+    standingsBody.innerHTML = standings
       .map(
-        (row) => `
+        (row, i) => `
           <tr>
-            <td>${row.place === 1 ? "1st (Champion)" : ordinal(row.place)}</td>
+            <td>${i + 1}</td>
             <td>${row.team}</td>
             <td>${row.manager}</td>
+            <td>${row.wins}-${row.losses}${row.ties ? `-${row.ties}` : ""}</td>
+            <td>${row.fpts.toFixed(2)}</td>
+            <td>${row.fptsAgainst.toFixed(2)}</td>
           </tr>`
       )
       .join("");
+
+    const placements = buildPlayoffPlacements(bracket, rosters, usersByUserId);
+    const playoffNotStarted = document.getElementById("playoff-not-started");
+    const playoffTableWrap = document.getElementById("playoff-table-wrap");
+
+    if (placements.length === 0) {
+      playoffNotStarted.classList.remove("hidden");
+      playoffTableWrap.classList.add("hidden");
+    } else {
+      playoffNotStarted.classList.add("hidden");
+      playoffTableWrap.classList.remove("hidden");
+
+      const playoffBody = document.querySelector("#playoff-table tbody");
+      playoffBody.innerHTML = placements
+        .map(
+          (row) => `
+            <tr>
+              <td>${row.place === 1 ? "1st (Champion)" : ordinal(row.place)}</td>
+              <td>${row.team}</td>
+              <td>${row.manager}</td>
+            </tr>`
+        )
+        .join("");
+    }
+  } catch (e) {
+    loading.classList.remove("hidden");
+    loading.textContent = `Couldn't load ${season} data: ${e.message}. Check your connection and reload.`;
+    return;
   }
 
   tables.classList.remove("hidden");
@@ -229,50 +236,48 @@ function scoreCell(entry) {
 
 async function initOverviewTab() {
   const loading = document.getElementById("overview-loading");
-  let overview;
   try {
-    overview = await loadOverview();
+    const overview = await loadOverview();
+
+    const yearsBody = document.querySelector("#overview-years-table tbody");
+    yearsBody.innerHTML = overview.years
+      .slice()
+      .sort((a, b) => b.season - a.season)
+      .map(
+        (y) => `
+          <tr>
+            <td>${y.season}</td>
+            <td>${y.champion.name || "&mdash;"}</td>
+            <td>${scoreCell(y.highest_score)}</td>
+            <td>${scoreCell(y.lowest_score)}</td>
+            <td>${scoreCell(y.scoring_title)}</td>
+          </tr>`
+      )
+      .join("");
+
+    const allTimeBody = document.querySelector("#overview-alltime-table tbody");
+    allTimeBody.innerHTML = overview.all_time
+      .map(
+        (r) => `
+          <tr>
+            <td>${r.name}</td>
+            <td>${r.wins}</td>
+            <td>${r.losses}</td>
+            <td>${r.win_pct}%</td>
+            <td>${r.points_for.toFixed(2)}</td>
+            <td>${r.points_against.toFixed(2)}</td>
+            <td>${r.differential.toFixed(2)}</td>
+            <td>${r.playoff_wins}</td>
+            <td>${r.seasons_played}</td>
+          </tr>`
+      )
+      .join("");
+
+    loading.classList.add("hidden");
+    document.getElementById("overview-content").classList.remove("hidden");
   } catch (e) {
     loading.textContent = `Couldn't load data: ${e.message}. Check your connection and reload.`;
-    return;
   }
-
-  const yearsBody = document.querySelector("#overview-years-table tbody");
-  yearsBody.innerHTML = overview.years
-    .slice()
-    .sort((a, b) => b.season - a.season)
-    .map(
-      (y) => `
-        <tr>
-          <td>${y.season}</td>
-          <td>${y.champion.name || "&mdash;"}</td>
-          <td>${scoreCell(y.highest_score)}</td>
-          <td>${scoreCell(y.lowest_score)}</td>
-          <td>${scoreCell(y.scoring_title)}</td>
-        </tr>`
-    )
-    .join("");
-
-  const allTimeBody = document.querySelector("#overview-alltime-table tbody");
-  allTimeBody.innerHTML = overview.all_time
-    .map(
-      (r) => `
-        <tr>
-          <td>${r.name}</td>
-          <td>${r.wins}</td>
-          <td>${r.losses}</td>
-          <td>${r.win_pct}%</td>
-          <td>${r.points_for.toFixed(2)}</td>
-          <td>${r.points_against.toFixed(2)}</td>
-          <td>${r.differential.toFixed(2)}</td>
-          <td>${r.playoff_wins}</td>
-          <td>${r.seasons_played}</td>
-        </tr>`
-    )
-    .join("");
-
-  loading.classList.add("hidden");
-  document.getElementById("overview-content").classList.remove("hidden");
 }
 
 // ---------- Points For / Points Against tabs ----------
@@ -308,27 +313,25 @@ async function initPointsTabs() {
   const forStatus = document.getElementById("points-for-status");
   const againstStatus = document.getElementById("points-against-status");
 
-  let overview;
   try {
-    overview = await loadOverview();
+    const overview = await loadOverview();
+
+    const seasonPoints = overview.season_points;
+    if (!seasonPoints) {
+      forStatus.textContent = "No points data available yet.";
+      againstStatus.textContent = "No points data available yet.";
+      return;
+    }
+
+    renderPointsTable("points-for-table", seasonPoints, "for", "total_for");
+    renderPointsTable("points-against-table", seasonPoints, "against", "total_against");
+    forStatus.classList.add("hidden");
+    againstStatus.classList.add("hidden");
   } catch (e) {
     const message = `Couldn't load data: ${e.message}. Check your connection and reload.`;
     forStatus.textContent = message;
     againstStatus.textContent = message;
-    return;
   }
-
-  const seasonPoints = overview.season_points;
-  if (!seasonPoints) {
-    forStatus.textContent = "No points data available yet.";
-    againstStatus.textContent = "No points data available yet.";
-    return;
-  }
-
-  renderPointsTable("points-for-table", seasonPoints, "for", "total_for");
-  renderPointsTable("points-against-table", seasonPoints, "against", "total_against");
-  forStatus.classList.add("hidden");
-  againstStatus.classList.add("hidden");
 }
 
 // ---------- Head-to-Head tab ----------
@@ -358,22 +361,20 @@ function renderHeadToHead(headToHead, currentNamesMap) {
 
 async function initHeadToHeadTab() {
   const status = document.getElementById("head-to-head-status");
-  let overview;
   try {
-    overview = await loadOverview();
+    const overview = await loadOverview();
+
+    const headToHead = overview.head_to_head;
+    if (!headToHead) {
+      status.textContent = "No head-to-head data available yet.";
+      return;
+    }
+
+    renderHeadToHead(headToHead, overview.current_names || {});
+    status.classList.add("hidden");
   } catch (e) {
     status.textContent = `Couldn't load data: ${e.message}. Check your connection and reload.`;
-    return;
   }
-
-  const headToHead = overview.head_to_head;
-  if (!headToHead) {
-    status.textContent = "No head-to-head data available yet.";
-    return;
-  }
-
-  renderHeadToHead(headToHead, overview.current_names || {});
-  status.classList.add("hidden");
 }
 
 async function init() {
