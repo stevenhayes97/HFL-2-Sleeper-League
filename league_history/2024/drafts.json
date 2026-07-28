@@ -1,0 +1,57 @@
+[
+  {
+    "created": 1722515805674,
+    "creators": [
+      "470710996982296576"
+    ],
+    "draft_id": "1124716443586719745",
+    "draft_order": {
+      "1121987861147906048": 6,
+      "470710996982296576": 10,
+      "471534616600113152": 8,
+      "475101158801666048": 7,
+      "756019433033785344": 2,
+      "859698267162787840": 1,
+      "861012415062601728": 9,
+      "862888169446682624": 4,
+      "993271725775175680": 3,
+      "999411623972442112": 5
+    },
+    "last_message_id": "1135083967985692672",
+    "last_message_time": 1724987616109,
+    "last_picked": 1724987588013,
+    "league_id": "1124716443586719744",
+    "metadata": {
+      "description": "",
+      "name": "HFLjr",
+      "scoring_type": "ppr"
+    },
+    "season": "2024",
+    "season_type": "regular",
+    "settings": {
+      "alpha_sort": 0,
+      "autopause_enabled": 0,
+      "autopause_end_time": 900,
+      "autopause_start_time": 180,
+      "autostart": 0,
+      "cpu_autopick": 1,
+      "enforce_position_limits": 1,
+      "nomination_timer": 60,
+      "pick_timer": 60,
+      "player_type": 0,
+      "reversal_round": 0,
+      "rounds": 15,
+      "slots_bn": 7,
+      "slots_flex": 2,
+      "slots_qb": 1,
+      "slots_rb": 2,
+      "slots_te": 1,
+      "slots_wr": 2,
+      "teams": 10
+    },
+    "sport": "nfl",
+    "start_time": 1724984158465,
+    "status": "complete",
+    "type": "snake"
+  }
+]
