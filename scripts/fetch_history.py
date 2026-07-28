@@ -1,7 +1,10 @@
 import json
 import urllib.request
 import os
+import sys
 import time
+
+from sleeper_schema import SchemaError, check_league, check_users, check_rosters, check_bracket
 
 BASE = "https://api.sleeper.app/v1"
 OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "league_history")
@@ -18,37 +21,60 @@ def save(path, data):
 def main():
     league_id = START_LEAGUE_ID
     chain = []
+    # Fetch and validate every season fully before writing anything to disk,
+    # so a Sleeper API change (a field renamed, missing, or reshaped) aborts
+    # the whole refresh instead of partially overwriting good historical
+    # data with broken data.
+    pending = []  # list of (season_dir, {filename: data})
+
     while league_id and league_id != "0":
         league = fetch(f"{BASE}/league/{league_id}")
         season = league.get("season", league_id)
-        season_dir = os.path.join(OUT_DIR, season)
-        os.makedirs(season_dir, exist_ok=True)
+        label = f"season {season} (league_id={league_id})"
+        check_league(league, label)
 
-        save(os.path.join(season_dir, "league.json"), league)
+        season_dir = os.path.join(OUT_DIR, season)
+        files = {"league.json": league}
         chain.append({"season": season, "league_id": league_id, "status": league.get("status")})
 
-        for endpoint, fname in [
-            ("users", "users.json"),
-            ("rosters", "rosters.json"),
-            ("winners_bracket", "winners_bracket.json"),
-            ("losers_bracket", "losers_bracket.json"),
-            ("drafts", "drafts.json"),
-            ("traded_picks", "traded_picks.json"),
+        for endpoint, fname, checker in [
+            ("users", "users.json", check_users),
+            ("rosters", "rosters.json", check_rosters),
+            ("winners_bracket", "winners_bracket.json", check_bracket),
+            ("losers_bracket", "losers_bracket.json", check_bracket),
         ]:
-            try:
-                data = fetch(f"{BASE}/league/{league_id}/{endpoint}")
-                save(os.path.join(season_dir, fname), data)
-            except Exception as e:
-                print(f"  skip {endpoint} for {season} ({league_id}): {e}")
+            data = fetch(f"{BASE}/league/{league_id}/{endpoint}")
+            checker(data, f"{label} {endpoint}")
+            files[fname] = data
             time.sleep(0.3)
 
-        print(f"Fetched season {season} (league_id={league_id})")
+        # drafts/traded_picks aren't read anywhere downstream (build_overview.py,
+        # the site) - kept as raw archival data, so only a basic type check.
+        for endpoint, fname in [("drafts", "drafts.json"), ("traded_picks", "traded_picks.json")]:
+            data = fetch(f"{BASE}/league/{league_id}/{endpoint}")
+            if not isinstance(data, list):
+                raise SchemaError(f"{label} {endpoint}: expected a list, got {type(data).__name__}")
+            files[fname] = data
+            time.sleep(0.3)
+
+        pending.append((season_dir, files))
+        print(f"Fetched and validated season {season} (league_id={league_id})")
         league_id = league.get("previous_league_id")
 
+    for season_dir, files in pending:
+        os.makedirs(season_dir, exist_ok=True)
+        for fname, data in files.items():
+            save(os.path.join(season_dir, fname), data)
+
     save(os.path.join(OUT_DIR, "index.json"), chain)
-    print("\nChain:")
+    print(f"\nWrote {len(pending)} seasons. Chain:")
     for c in chain:
         print(c)
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SchemaError as e:
+        print(f"\nSleeper API validation FAILED - nothing was written: {e}", file=sys.stderr)
+        print("This usually means Sleeper changed their API. Check the endpoint manually before retrying.", file=sys.stderr)
+        sys.exit(1)
