@@ -1,0 +1,60 @@
+[
+  {
+    "created": 1753054207818,
+    "creators": [
+      "470710996982296576"
+    ],
+    "draft_id": "1252803785852469248",
+    "draft_order": {
+      "1121987861147906048": 3,
+      "1252841762464989184": 2,
+      "1253426395581788160": 5,
+      "470710996982296576": 9,
+      "471379275656720384": 6,
+      "471534616600113152": 7,
+      "475101158801666048": 12,
+      "743367607524126720": 11,
+      "756019433033785344": 8,
+      "861012415062601728": 10,
+      "862888169446682624": 4,
+      "993271725775175680": 1
+    },
+    "last_message_id": "1265524355018792960",
+    "last_message_time": 1756087027843,
+    "last_picked": 1756087026811,
+    "league_id": "1252803785844072448",
+    "metadata": {
+      "description": "",
+      "name": "HFL^2",
+      "scoring_type": "ppr",
+      "show_team_names": "0"
+    },
+    "season": "2025",
+    "season_type": "regular",
+    "settings": {
+      "alpha_sort": 0,
+      "autopause_enabled": 0,
+      "autopause_end_time": 900,
+      "autopause_start_time": 180,
+      "autostart": 0,
+      "cpu_autopick": 1,
+      "enforce_position_limits": 1,
+      "nomination_timer": 60,
+      "pick_timer": 30,
+      "player_type": 0,
+      "reversal_round": 0,
+      "rounds": 15,
+      "slots_bn": 7,
+      "slots_flex": 2,
+      "slots_qb": 1,
+      "slots_rb": 2,
+      "slots_te": 1,
+      "slots_wr": 2,
+      "teams": 12
+    },
+    "sport": "nfl",
+    "start_time": 1756083632658,
+    "status": "complete",
+    "type": "snake"
+  }
+]

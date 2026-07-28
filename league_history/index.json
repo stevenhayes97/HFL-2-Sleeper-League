@@ -1,0 +1,27 @@
+[
+  {
+    "season": "2026",
+    "league_id": "1382788768955641856",
+    "status": "pre_draft"
+  },
+  {
+    "season": "2025",
+    "league_id": "1252803785844072448",
+    "status": "complete"
+  },
+  {
+    "season": "2024",
+    "league_id": "1124716443586719744",
+    "status": "complete"
+  },
+  {
+    "season": "2023",
+    "league_id": "991942084397490176",
+    "status": "complete"
+  },
+  {
+    "season": "2022",
+    "league_id": "849042229170372608",
+    "status": "complete"
+  }
+]
