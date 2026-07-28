@@ -16,6 +16,7 @@
     <button class="tab-btn" data-tab="overview">Historical Overview</button>
     <button class="tab-btn" data-tab="points-for">Points For</button>
     <button class="tab-btn" data-tab="points-against">Points Against</button>
+    <button class="tab-btn" data-tab="head-to-head">Head-to-Head</button>
   </nav>
 </header>
 
@@ -136,6 +137,18 @@
     <p id="points-against-status">Loading&hellip;</p>
     <div class="table-wrap">
       <table id="points-against-table">
+        <thead><tr></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="tab-head-to-head" class="tab-panel">
+    <h2>All-Time Head-to-Head</h2>
+    <p class="note">Regular season matchups only. Read as row's record vs. column - e.g. row Brett, column Dallas is Brett's record against Dallas. Blank means they've never played each other.</p>
+    <p id="head-to-head-status">Loading&hellip;</p>
+    <div class="table-wrap">
+      <table id="head-to-head-table" class="matrix-table">
         <thead><tr></tr></thead>
         <tbody></tbody>
       </table>
