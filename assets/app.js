@@ -331,12 +331,58 @@ async function initPointsTabs() {
   againstStatus.classList.add("hidden");
 }
 
+// ---------- Head-to-Head tab ----------
+
+function renderHeadToHead(headToHead, currentNamesMap) {
+  const { order, records } = headToHead;
+
+  const headRow = document.querySelector("#head-to-head-table thead tr");
+  headRow.innerHTML =
+    "<th>Name</th>" + order.map((id) => `<th>${currentNamesMap[id] || "Unknown"}</th>`).join("");
+
+  const body = document.querySelector("#head-to-head-table tbody");
+  body.innerHTML = order
+    .map((rowId) => {
+      const rowRecord = records[rowId] || {};
+      const cells = order
+        .map((colId) => {
+          if (colId === rowId) return `<td class="diagonal-cell">&mdash;</td>`;
+          const rec = rowRecord[colId];
+          return `<td>${rec ? `${rec[0]}-${rec[1]}` : ""}</td>`;
+        })
+        .join("");
+      return `<tr><td class="row-label">${currentNamesMap[rowId] || "Unknown"}</td>${cells}</tr>`;
+    })
+    .join("");
+}
+
+async function initHeadToHeadTab() {
+  const status = document.getElementById("head-to-head-status");
+  let overview;
+  try {
+    overview = await loadOverview();
+  } catch (e) {
+    status.textContent = `Couldn't load data: ${e.message}. Check your connection and reload.`;
+    return;
+  }
+
+  const headToHead = overview.head_to_head;
+  if (!headToHead) {
+    status.textContent = "No head-to-head data available yet.";
+    return;
+  }
+
+  renderHeadToHead(headToHead, overview.current_names || {});
+  status.classList.add("hidden");
+}
+
 async function init() {
   await loadCurrentNames();
   loadHomeStatus();
   initHistoryTab();
   initOverviewTab();
   initPointsTabs();
+  initHeadToHeadTab();
 }
 
 init();

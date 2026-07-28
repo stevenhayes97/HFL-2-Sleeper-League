@@ -161,6 +161,37 @@ tbody tr:last-child td {
   color: var(--accent);
 }
 
+/* Matrix table (Head-to-Head): first column stays put while the rest of the
+   grid scrolls horizontally, since row labels are useless once scrolled
+   out of view on a table this wide. */
+.matrix-table th,
+.matrix-table td {
+  padding: 0.5rem 0.65rem;
+  font-size: 0.9rem;
+}
+
+.matrix-table th:first-child,
+.matrix-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--bg-elevated);
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.35);
+}
+
+.matrix-table thead th:first-child {
+  z-index: 2;
+}
+
+.matrix-table tbody tr:nth-child(even) td:first-child {
+  background: var(--row-alt);
+}
+
+.diagonal-cell {
+  color: var(--muted);
+  text-align: center;
+}
+
 .hidden {
   display: none;
 }

@@ -59,6 +59,7 @@ def main():
 
     all_time = {}  # canonical user_id -> stats accumulator
     season_points = {}  # canonical user_id -> {season: {"for": x, "against": y}}
+    head_to_head = {}  # canonical user_id -> {opponent canonical user_id: [wins, losses]}
     years_out = []
 
     for entry in completed:
@@ -146,6 +147,28 @@ def main():
             if scoring_title is None or pf > scoring_title["points"]:
                 scoring_title = {"points": pf, "owner_id": r["owner_id"]}
 
+        # --- head-to-head, regular season only (matches the other per-manager
+        # stats), pairing rosters that share a matchup_id in the same week ---
+        for week_str, week_matchups in matchups.items():
+            week = int(week_str)
+            if week >= playoff_week_start:
+                continue
+            by_matchup_id = {}
+            for m in week_matchups:
+                by_matchup_id.setdefault(m["matchup_id"], []).append(m)
+            for pair in by_matchup_id.values():
+                if len(pair) != 2:
+                    continue
+                p1, p2 = pair
+                pts1, pts2 = p1.get("points"), p2.get("points")
+                if pts1 is None or pts2 is None or pts1 == pts2:
+                    continue
+                id1 = canonical(roster_to_owner[p1["roster_id"]])
+                id2 = canonical(roster_to_owner[p2["roster_id"]])
+                winner_id, loser_id = (id1, id2) if pts1 > pts2 else (id2, id1)
+                head_to_head.setdefault(winner_id, {}).setdefault(loser_id, [0, 0])[0] += 1
+                head_to_head.setdefault(loser_id, {}).setdefault(winner_id, [0, 0])[1] += 1
+
         years_out.append({
             "season": season,
             "champion": {
@@ -204,11 +227,16 @@ def main():
             "total_against": round(sum(v["against"] for v in per_season.values()), 2),
         })
 
+    # Head-to-head grid, ordered to match the All-Time table so the two tabs
+    # read consistently. A manager pair with no games together is simply
+    # absent from records, rather than a zeroed [0, 0].
+    h2h_order = [r["user_id"] for r in all_time_out]
     out = {
         "years": years_out,
         "all_time": all_time_out,
         "current_names": current_names,
         "season_points": {"seasons": season_list, "rows": season_points_out},
+        "head_to_head": {"order": h2h_order, "records": head_to_head},
     }
     with open(os.path.join(DATA_DIR, "historical_overview.json"), "w") as f:
         json.dump(out, f, indent=2)
