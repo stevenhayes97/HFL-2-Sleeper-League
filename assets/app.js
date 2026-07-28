@@ -33,10 +33,19 @@ async function fetchJSON(path) {
 }
 
 let currentNames = {};
+let overviewPromise = null;
+
+// Several tabs read this same file; fetch it once and share the result.
+function loadOverview() {
+  if (!overviewPromise) {
+    overviewPromise = fetchJSON(`${DATA_DIR}/historical_overview.json`);
+  }
+  return overviewPromise;
+}
 
 async function loadCurrentNames() {
   try {
-    const overview = await fetchJSON(`${DATA_DIR}/historical_overview.json`);
+    const overview = await loadOverview();
     currentNames = overview.current_names || {};
   } catch (e) {
     currentNames = {};
@@ -214,7 +223,7 @@ function scoreCell(entry) {
 }
 
 async function initOverviewTab() {
-  const overview = await fetchJSON(`${DATA_DIR}/historical_overview.json`);
+  const overview = await loadOverview();
 
   const yearsBody = document.querySelector("#overview-years-table tbody");
   yearsBody.innerHTML = overview.years
@@ -254,11 +263,50 @@ async function initOverviewTab() {
   document.getElementById("overview-content").classList.remove("hidden");
 }
 
+// ---------- Points For / Points Against tabs ----------
+
+// Both tabs are the same grid over the same rows, differing only in which
+// per-season value they read, so they share one renderer.
+function renderPointsTable(tableId, seasonPoints, key, totalKey) {
+  const { seasons, rows } = seasonPoints;
+
+  const headRow = document.querySelector(`#${tableId} thead tr`);
+  headRow.innerHTML =
+    "<th>Name</th>" +
+    seasons.map((s) => `<th>${s}</th>`).join("") +
+    "<th>Total</th>";
+
+  const sorted = rows.slice().sort((a, b) => b[totalKey] - a[totalKey]);
+
+  const body = document.querySelector(`#${tableId} tbody`);
+  body.innerHTML = sorted
+    .map((row) => {
+      const cells = seasons
+        .map((s) => {
+          const entry = row.seasons[s];
+          return `<td>${entry ? entry[key].toFixed(2) : ""}</td>`;
+        })
+        .join("");
+      return `<tr><td>${row.name}</td>${cells}<td class="total-col">${row[totalKey].toFixed(2)}</td></tr>`;
+    })
+    .join("");
+}
+
+async function initPointsTabs() {
+  const overview = await loadOverview();
+  const seasonPoints = overview.season_points;
+  if (!seasonPoints) return;
+
+  renderPointsTable("points-for-table", seasonPoints, "for", "total_for");
+  renderPointsTable("points-against-table", seasonPoints, "against", "total_against");
+}
+
 async function init() {
   await loadCurrentNames();
   loadHomeStatus();
   initHistoryTab();
   initOverviewTab();
+  initPointsTabs();
 }
 
 init();

@@ -14,6 +14,8 @@
     <button class="tab-btn active" data-tab="home">Home</button>
     <button class="tab-btn" data-tab="history">League History</button>
     <button class="tab-btn" data-tab="overview">Historical Overview</button>
+    <button class="tab-btn" data-tab="points-for">Points For</button>
+    <button class="tab-btn" data-tab="points-against">Points Against</button>
   </nav>
 </header>
 
@@ -113,6 +115,28 @@
           <tbody></tbody>
         </table>
       </div>
+    </div>
+  </section>
+
+  <section id="tab-points-for" class="tab-panel">
+    <h2>Points For</h2>
+    <p class="note">Total points scored per season. Blank means that manager didn't play that season.</p>
+    <div class="table-wrap">
+      <table id="points-for-table">
+        <thead><tr></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="tab-points-against" class="tab-panel">
+    <h2>Points Against</h2>
+    <p class="note">Total points scored against each manager per season. Blank means that manager didn't play that season.</p>
+    <div class="table-wrap">
+      <table id="points-against-table">
+        <thead><tr></tr></thead>
+        <tbody></tbody>
+      </table>
     </div>
   </section>
 

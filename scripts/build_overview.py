@@ -58,6 +58,7 @@ def main():
     completed.sort(key=lambda e: e["season"])  # oldest -> newest
 
     all_time = {}  # canonical user_id -> stats accumulator
+    season_points = {}  # canonical user_id -> {season: {"for": x, "against": y}}
     years_out = []
 
     for entry in completed:
@@ -79,11 +80,20 @@ def main():
                 "points_for": 0.0, "points_against": 0.0,
                 "playoff_wins": 0, "seasons_played": 0,
             })
+            pf = fpts_total(s, "fpts")
+            pa = fpts_total(s, "fpts_against")
             acc["wins"] += s.get("wins", 0) or 0
             acc["losses"] += s.get("losses", 0) or 0
-            acc["points_for"] += fpts_total(s, "fpts")
-            acc["points_against"] += fpts_total(s, "fpts_against")
+            acc["points_for"] += pf
+            acc["points_against"] += pa
             acc["seasons_played"] += 1
+
+            # A manager can only hold one roster per season, so this is a
+            # straight assignment rather than an accumulation.
+            season_points.setdefault(canonical_id, {})[season] = {
+                "for": round(pf, 2),
+                "against": round(pa, 2),
+            }
 
         for match in bracket:
             winner_roster = match.get("w")
@@ -181,7 +191,25 @@ def main():
 
     all_time_out.sort(key=lambda r: (-r["wins"], -r["points_for"]))
 
-    out = {"years": years_out, "all_time": all_time_out, "current_names": current_names}
+    # Per-season points for/against grids. Seasons a manager didn't play are
+    # left absent rather than zeroed, so the site can render them blank.
+    season_list = [e["season"] for e in completed]
+    season_points_out = []
+    for canonical_id, per_season in season_points.items():
+        season_points_out.append({
+            "user_id": canonical_id,
+            "name": current_names.get(canonical_id, "Unknown"),
+            "seasons": per_season,
+            "total_for": round(sum(v["for"] for v in per_season.values()), 2),
+            "total_against": round(sum(v["against"] for v in per_season.values()), 2),
+        })
+
+    out = {
+        "years": years_out,
+        "all_time": all_time_out,
+        "current_names": current_names,
+        "season_points": {"seasons": season_list, "rows": season_points_out},
+    }
     with open(os.path.join(DATA_DIR, "historical_overview.json"), "w") as f:
         json.dump(out, f, indent=2)
 
