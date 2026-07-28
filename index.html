@@ -7,7 +7,7 @@
 <!-- Bump the ?v= query param on style.css/app.js whenever either changes, so
      browsers/CDN caches that haven't seen the new version don't keep serving
      stale assets after a deploy. -->
-<link rel="stylesheet" href="assets/style.css?v=2">
+<link rel="stylesheet" href="assets/style.css?v=3">
 </head>
 <body>
 
@@ -20,6 +20,7 @@
     <button class="tab-btn" data-tab="points-for">Points For</button>
     <button class="tab-btn" data-tab="points-against">Points Against</button>
     <button class="tab-btn" data-tab="head-to-head">Head-to-Head</button>
+    <button class="tab-btn" data-tab="championship">Championship</button>
   </nav>
 </header>
 
@@ -158,8 +159,36 @@
     </div>
   </section>
 
+  <section id="tab-championship" class="tab-panel">
+    <h2>Championship Matchup</h2>
+    <p class="note">Starting lineups only. Player NFL teams reflect their current team, not necessarily who they played for that season.</p>
+    <div id="championship-year-selector" class="year-selector"></div>
+    <p id="championship-status">Loading&hellip;</p>
+
+    <div id="championship-content" class="hidden">
+      <div class="matchup-header">
+        <div id="championship-team-a" class="matchup-team"></div>
+        <div class="matchup-vs">VS</div>
+        <div id="championship-team-b" class="matchup-team"></div>
+      </div>
+
+      <div class="table-wrap">
+        <table id="championship-lineup-table" class="lineup-table">
+          <thead>
+            <tr>
+              <th colspan="2" id="championship-lineup-head-a"></th>
+              <th>Slot</th>
+              <th colspan="2" id="championship-lineup-head-b"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<script src="assets/app.js?v=2"></script>
+<script src="assets/app.js?v=3"></script>
 </body>
 </html>

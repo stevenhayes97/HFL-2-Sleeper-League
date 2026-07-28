@@ -1,9 +1,14 @@
 import json
 import os
 
+from championship_utils import find_championship
+
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(SCRIPT_DIR, "..", "league_history")
 ALIASES_PATH = os.path.join(SCRIPT_DIR, "user_aliases.json")
+PLAYERS_CACHE_PATH = os.path.join(DATA_DIR, "players_cache.json")
+
+NON_STARTING_SLOTS = ("BN", "TAXI", "IR")
 
 def load(season, name):
     with open(os.path.join(DATA_DIR, season, name)) as f:
@@ -11,6 +16,26 @@ def load(season, name):
 
 def fpts_total(settings, prefix):
     return (settings.get(f"{prefix}") or 0) + (settings.get(f"{prefix}_decimal") or 0) / 100
+
+def team_name_for(user_by_id, owner_id):
+    u = user_by_id.get(owner_id) or {}
+    return (u.get("metadata") or {}).get("team_name") or u.get("display_name", "Unknown")
+
+def build_lineup(week_entry, roster_positions, players_cache):
+    starters = week_entry.get("starters", [])
+    starters_points = week_entry.get("starters_points", [])
+    lineup = []
+    for slot, pid, pts in zip(roster_positions, starters, starters_points):
+        if not pid or pid == "0":
+            lineup.append({"slot": slot, "player_id": None, "player_name": "Empty", "position": None, "team": None, "points": round(pts, 2)})
+            continue
+        p = players_cache.get(pid)
+        if p:
+            name, position, team = p["full_name"], p["position"], p["team"]
+        else:
+            name, position, team = f"Unknown Player ({pid})", None, None
+        lineup.append({"slot": slot, "player_id": pid, "player_name": name, "position": position, "team": team, "points": round(pts, 2)})
+    return lineup
 
 def load_aliases():
     with open(ALIASES_PATH) as f:
@@ -51,6 +76,10 @@ def main():
     index = json.load(open(os.path.join(DATA_DIR, "index.json")))
     current_names = build_current_names(index, canonical, display_name_overrides)
 
+    players_cache = {}
+    if os.path.exists(PLAYERS_CACHE_PATH):
+        players_cache = json.load(open(PLAYERS_CACHE_PATH))
+
     def name_for(owner_id):
         return current_names.get(canonical(owner_id), "Unknown")
 
@@ -61,15 +90,18 @@ def main():
     season_points = {}  # canonical user_id -> {season: {"for": x, "against": y}}
     head_to_head = {}  # canonical user_id -> {opponent canonical user_id: [wins, losses]}
     years_out = []
+    championships_out = []
 
     for entry in completed:
         season = entry["season"]
         league = load(season, "league.json")
+        users = load(season, "users.json")
         rosters = load(season, "rosters.json")
         bracket = load(season, "winners_bracket.json")
         matchups = load(season, "matchups.json")
 
         roster_to_owner = {r["roster_id"]: r["owner_id"] for r in rosters}
+        user_by_id = {u["user_id"]: u for u in users}
 
         # --- season accumulation for all-time table ---
         for r in rosters:
@@ -194,6 +226,33 @@ def main():
             },
         })
 
+        # --- championship matchup lineup ---
+        champ = find_championship(league, bracket)
+        if champ is not None:
+            week_entries = matchups.get(str(champ["week"]), [])
+            roster_positions = [p for p in league.get("roster_positions", []) if p not in NON_STARTING_SLOTS]
+
+            def team_payload(roster_id, is_winner):
+                owner_id = roster_to_owner[roster_id]
+                week_entry = next((e for e in week_entries if e["roster_id"] == roster_id), {})
+                return {
+                    "user_id": canonical(owner_id),
+                    "name": name_for(owner_id),
+                    "team_name": team_name_for(user_by_id, owner_id),
+                    "points": round(week_entry.get("points") or 0, 2),
+                    "is_winner": is_winner,
+                    "lineup": build_lineup(week_entry, roster_positions, players_cache),
+                }
+
+            championships_out.append({
+                "season": season,
+                "week": champ["week"],
+                "teams": [
+                    team_payload(champ["roster_a"], True),
+                    team_payload(champ["roster_b"], False),
+                ],
+            })
+
     all_time_out = []
     for acc in all_time.values():
         wins, losses = acc["wins"], acc["losses"]
@@ -237,6 +296,7 @@ def main():
         "current_names": current_names,
         "season_points": {"seasons": season_list, "rows": season_points_out},
         "head_to_head": {"order": h2h_order, "records": head_to_head},
+        "championships": championships_out,
     }
     with open(os.path.join(DATA_DIR, "historical_overview.json"), "w") as f:
         json.dump(out, f, indent=2)
