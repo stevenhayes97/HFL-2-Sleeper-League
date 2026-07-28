@@ -377,6 +377,98 @@ async function initHeadToHeadTab() {
   }
 }
 
+// ---------- Championship Matchup tab ----------
+
+function playerLabel(p) {
+  if (p.player_id == null) return p.player_name;
+  return p.position ? `${p.player_name} (${p.position})` : p.player_name;
+}
+
+function renderChampionshipTeamHeader(el, team) {
+  el.classList.toggle("matchup-team-winner", team.is_winner);
+  el.innerHTML = `
+    <div class="matchup-team-name">${team.team_name}${team.is_winner ? " &#127942;" : ""}</div>
+    <div class="matchup-team-manager">${team.name}</div>
+    <div class="matchup-team-points">${team.points.toFixed(2)}</div>
+  `;
+}
+
+function renderChampionship(champ) {
+  const [teamA, teamB] = champ.teams;
+
+  renderChampionshipTeamHeader(document.getElementById("championship-team-a"), teamA);
+  renderChampionshipTeamHeader(document.getElementById("championship-team-b"), teamB);
+
+  document.getElementById("championship-lineup-head-a").textContent = teamA.team_name;
+  document.getElementById("championship-lineup-head-b").textContent = teamB.team_name;
+
+  const body = document.querySelector("#championship-lineup-table tbody");
+  body.innerHTML = teamA.lineup
+    .map((playerA, i) => {
+      const playerB = teamB.lineup[i];
+      return `
+        <tr>
+          <td>${playerLabel(playerA)}</td>
+          <td class="lineup-pts">${playerA.points.toFixed(2)}</td>
+          <td class="slot-label">${playerA.slot}</td>
+          <td class="lineup-pts">${playerB.points.toFixed(2)}</td>
+          <td>${playerLabel(playerB)}</td>
+        </tr>`;
+    })
+    .join("");
+}
+
+async function initChampionshipTab() {
+  const status = document.getElementById("championship-status");
+  const content = document.getElementById("championship-content");
+  const selector = document.getElementById("championship-year-selector");
+
+  let championships;
+  try {
+    const overview = await loadOverview();
+    championships = overview.championships;
+  } catch (e) {
+    status.textContent = `Couldn't load data: ${e.message}. Check your connection and reload.`;
+    return;
+  }
+
+  if (!championships || championships.length === 0) {
+    status.textContent = "No championship data available yet.";
+    return;
+  }
+
+  const bySeason = {};
+  championships.forEach((c) => (bySeason[c.season] = c));
+  const years = Object.keys(bySeason).sort((a, b) => b - a);
+  const defaultYear = years[0];
+
+  selector.innerHTML = years
+    .map((y) => `<button class="year-btn${y === defaultYear ? " active" : ""}" data-year="${y}">${y}</button>`)
+    .join("");
+
+  const showYear = (year) => {
+    try {
+      renderChampionship(bySeason[year]);
+      status.classList.add("hidden");
+      content.classList.remove("hidden");
+    } catch (e) {
+      content.classList.add("hidden");
+      status.classList.remove("hidden");
+      status.textContent = `Couldn't render ${year}: ${e.message}.`;
+    }
+  };
+
+  selector.querySelectorAll(".year-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      selector.querySelectorAll(".year-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      showYear(btn.dataset.year);
+    });
+  });
+
+  showYear(defaultYear);
+}
+
 async function init() {
   await loadCurrentNames();
   loadHomeStatus();
@@ -384,6 +476,7 @@ async function init() {
   initOverviewTab();
   initPointsTabs();
   initHeadToHeadTab();
+  initChampionshipTab();
 }
 
 init();

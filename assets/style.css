@@ -201,3 +201,80 @@ tbody tr:last-child td {
   font-size: 0.9rem;
   margin-top: -0.5rem;
 }
+
+/* Championship Matchup */
+.matchup-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.matchup-team {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.matchup-team-winner {
+  border-color: var(--accent);
+  box-shadow: 0 0 16px rgba(53, 230, 171, 0.35);
+}
+
+.matchup-team-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  overflow-wrap: break-word;
+}
+
+.matchup-team-manager {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.15rem;
+}
+
+.matchup-team-points {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 0.4rem;
+}
+
+.matchup-vs {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.lineup-table th:first-child,
+.lineup-table th:nth-child(2) {
+  text-align: left;
+}
+
+.lineup-table th:last-child,
+.lineup-table th:nth-child(4) {
+  text-align: right;
+}
+
+.lineup-table td:nth-child(5) {
+  text-align: right;
+}
+
+.lineup-pts {
+  font-weight: 700;
+  text-align: center;
+  color: var(--accent);
+}
+
+.slot-label {
+  text-align: center;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+}

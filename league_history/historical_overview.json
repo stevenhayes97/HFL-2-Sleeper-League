@@ -1660,5 +1660,551 @@
         ]
       }
     }
-  }
+  },
+  "championships": [
+    {
+      "season": "2022",
+      "week": 17,
+      "teams": [
+        {
+          "user_id": "470779963310600192",
+          "name": "GenieOW",
+          "team_name": "Terry's Thunder Thighs",
+          "points": 141.1,
+          "is_winner": true,
+          "lineup": [
+            {
+              "slot": "QB",
+              "player_id": "3163",
+              "player_name": "Jared Goff",
+              "position": "QB",
+              "points": 22.4
+            },
+            {
+              "slot": "RB",
+              "player_id": "4018",
+              "player_name": "Joe Mixon",
+              "position": "RB",
+              "points": 1.2
+            },
+            {
+              "slot": "RB",
+              "player_id": "2161",
+              "player_name": "Jerick McKinnon",
+              "position": "RB",
+              "points": 22.6
+            },
+            {
+              "slot": "WR",
+              "player_id": "2133",
+              "player_name": "Davante Adams",
+              "position": "WR",
+              "points": 34.3
+            },
+            {
+              "slot": "WR",
+              "player_id": "4068",
+              "player_name": "Mike Williams",
+              "position": "WR",
+              "points": 16.4
+            },
+            {
+              "slot": "TE",
+              "player_id": "5001",
+              "player_name": "Dalton Schultz",
+              "position": "TE",
+              "points": 24.6
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "4137",
+              "player_name": "James Conner",
+              "position": "RB",
+              "points": 14.0
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "5892",
+              "player_name": "David Montgomery",
+              "position": "RB",
+              "points": 5.6
+            }
+          ]
+        },
+        {
+          "user_id": "859698267162787840",
+          "name": "foxicca",
+          "team_name": "Tua Time to end it all",
+          "points": 115.58,
+          "is_winner": false,
+          "lineup": [
+            {
+              "slot": "QB",
+              "player_id": "5870",
+              "player_name": "Daniel Jones",
+              "position": "QB",
+              "points": 36.18
+            },
+            {
+              "slot": "RB",
+              "player_id": "4866",
+              "player_name": "Saquon Barkley",
+              "position": "RB",
+              "points": 7.3
+            },
+            {
+              "slot": "RB",
+              "player_id": "6828",
+              "player_name": "AJ Dillon",
+              "position": "RB",
+              "points": 10.1
+            },
+            {
+              "slot": "WR",
+              "player_id": "7526",
+              "player_name": "Jaylen Waddle",
+              "position": "WR",
+              "points": 8.2
+            },
+            {
+              "slot": "WR",
+              "player_id": "7525",
+              "player_name": "DeVonta Smith",
+              "position": "WR",
+              "points": 20.5
+            },
+            {
+              "slot": "TE",
+              "player_id": "5012",
+              "player_name": "Mark Andrews",
+              "position": "TE",
+              "points": 19.0
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "7547",
+              "player_name": "Amon-Ra St. Brown",
+              "position": "WR",
+              "points": 10.2
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "4950",
+              "player_name": "Christian Kirk",
+              "position": "WR",
+              "points": 4.1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "season": "2023",
+      "week": 17,
+      "teams": [
+        {
+          "user_id": "470710996982296576",
+          "name": "bh1747",
+          "team_name": "did the bears win? (YES)",
+          "points": 131.3,
+          "is_winner": true,
+          "lineup": [
+            {
+              "slot": "QB",
+              "player_id": "3294",
+              "player_name": "Dak Prescott",
+              "position": "QB",
+              "points": 21.3
+            },
+            {
+              "slot": "RB",
+              "player_id": "4663",
+              "player_name": "Austin Ekeler",
+              "position": "RB",
+              "points": 4.0
+            },
+            {
+              "slot": "RB",
+              "player_id": "8139",
+              "player_name": "Zamir White",
+              "position": "RB",
+              "points": 15.6
+            },
+            {
+              "slot": "WR",
+              "player_id": "2216",
+              "player_name": "Mike Evans",
+              "position": "WR",
+              "points": 10.0
+            },
+            {
+              "slot": "WR",
+              "player_id": "6786",
+              "player_name": "CeeDee Lamb",
+              "position": "WR",
+              "points": 40.2
+            },
+            {
+              "slot": "TE",
+              "player_id": "8110",
+              "player_name": "Jake Ferguson",
+              "position": "TE",
+              "points": 7.3
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "9493",
+              "player_name": "Puka Nacua",
+              "position": "WR",
+              "points": 18.7
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "1426",
+              "player_name": "DeAndre Hopkins",
+              "position": "WR",
+              "points": 14.2
+            }
+          ]
+        },
+        {
+          "user_id": "743367607524126720",
+          "name": "nahopih",
+          "team_name": "its joever",
+          "points": 108.44,
+          "is_winner": false,
+          "lineup": [
+            {
+              "slot": "QB",
+              "player_id": "4881",
+              "player_name": "Lamar Jackson",
+              "position": "QB",
+              "points": 36.34
+            },
+            {
+              "slot": "RB",
+              "player_id": "4035",
+              "player_name": "Alvin Kamara",
+              "position": "RB",
+              "points": 6.9
+            },
+            {
+              "slot": "RB",
+              "player_id": "5892",
+              "player_name": "David Montgomery",
+              "position": "RB",
+              "points": 12.5
+            },
+            {
+              "slot": "WR",
+              "player_id": "7564",
+              "player_name": "Ja'Marr Chase",
+              "position": "WR",
+              "points": 7.1
+            },
+            {
+              "slot": "WR",
+              "player_id": "9997",
+              "player_name": "Zay Flowers",
+              "position": "WR",
+              "points": 19.6
+            },
+            {
+              "slot": "TE",
+              "player_id": "7600",
+              "player_name": "Pat Freiermuth",
+              "position": "TE",
+              "points": 7.4
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "4866",
+              "player_name": "Saquon Barkley",
+              "position": "RB",
+              "points": 8.8
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "1689",
+              "player_name": "Adam Thielen",
+              "position": "WR",
+              "points": 9.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "season": "2024",
+      "week": 17,
+      "teams": [
+        {
+          "user_id": "475101158801666048",
+          "name": "ThePatchster",
+          "team_name": "Go Hawks Go",
+          "points": 136.44,
+          "is_winner": true,
+          "lineup": [
+            {
+              "slot": "QB",
+              "player_id": "5849",
+              "player_name": "Kyler Murray",
+              "position": "QB",
+              "points": 18.04
+            },
+            {
+              "slot": "RB",
+              "player_id": "9224",
+              "player_name": "Chase Brown",
+              "position": "RB",
+              "points": 13.1
+            },
+            {
+              "slot": "RB",
+              "player_id": "6813",
+              "player_name": "Jonathan Taylor",
+              "position": "RB",
+              "points": 27.6
+            },
+            {
+              "slot": "WR",
+              "player_id": "11635",
+              "player_name": "Ladd McConkey",
+              "position": "WR",
+              "points": 29.4
+            },
+            {
+              "slot": "WR",
+              "player_id": "8134",
+              "player_name": "Khalil Shakir",
+              "position": "WR",
+              "points": 5.5
+            },
+            {
+              "slot": "TE",
+              "player_id": "10859",
+              "player_name": "Sam LaPorta",
+              "position": "TE",
+              "points": 18.4
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "8136",
+              "player_name": "Rachaad White",
+              "position": "RB",
+              "points": 4.4
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "7547",
+              "player_name": "Amon-Ra St. Brown",
+              "position": "WR",
+              "points": 20.0
+            }
+          ]
+        },
+        {
+          "user_id": "999411623972442112",
+          "name": "FlawlessAerial",
+          "team_name": "Da bears",
+          "points": 121.52,
+          "is_winner": false,
+          "lineup": [
+            {
+              "slot": "QB",
+              "player_id": "3163",
+              "player_name": "Jared Goff",
+              "position": "QB",
+              "points": 25.82
+            },
+            {
+              "slot": "RB",
+              "player_id": "9226",
+              "player_name": "De'Von Achane",
+              "position": "RB",
+              "points": 5.8
+            },
+            {
+              "slot": "RB",
+              "player_id": "9753",
+              "player_name": "Zach Charbonnet",
+              "position": "RB",
+              "points": 10.6
+            },
+            {
+              "slot": "WR",
+              "player_id": "7564",
+              "player_name": "Ja'Marr Chase",
+              "position": "WR",
+              "points": 19.2
+            },
+            {
+              "slot": "WR",
+              "player_id": "5927",
+              "player_name": "Terry McLaurin",
+              "position": "WR",
+              "points": 1.5
+            },
+            {
+              "slot": "TE",
+              "player_id": "4217",
+              "player_name": "George Kittle",
+              "position": "TE",
+              "points": 19.2
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "11624",
+              "player_name": "Xavier Worthy",
+              "position": "WR",
+              "points": 22.9
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "5045",
+              "player_name": "Courtland Sutton",
+              "position": "WR",
+              "points": 16.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "season": "2025",
+      "week": 17,
+      "teams": [
+        {
+          "user_id": "743367607524126720",
+          "name": "nahopih",
+          "team_name": "nahopih",
+          "points": 93.72,
+          "is_winner": true,
+          "lineup": [
+            {
+              "slot": "QB",
+              "player_id": "12545",
+              "player_name": "Tyler Shough",
+              "position": "QB",
+              "points": 21.92
+            },
+            {
+              "slot": "RB",
+              "player_id": "5850",
+              "player_name": "Josh Jacobs",
+              "position": "RB",
+              "points": 1.3
+            },
+            {
+              "slot": "RB",
+              "player_id": "12507",
+              "player_name": "Omarion Hampton",
+              "position": "RB",
+              "points": 20.0
+            },
+            {
+              "slot": "WR",
+              "player_id": "12526",
+              "player_name": "Tetairoa McMillan",
+              "position": "WR",
+              "points": 1.5
+            },
+            {
+              "slot": "WR",
+              "player_id": "2449",
+              "player_name": "Stefon Diggs",
+              "position": "WR",
+              "points": 22.1
+            },
+            {
+              "slot": "TE",
+              "player_id": "5022",
+              "player_name": "Dallas Goedert",
+              "position": "TE",
+              "points": 9.8
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "8112",
+              "player_name": "Drake London",
+              "position": "WR",
+              "points": 1.4
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "9493",
+              "player_name": "Puka Nacua",
+              "position": "WR",
+              "points": 15.7
+            }
+          ]
+        },
+        {
+          "user_id": "475101158801666048",
+          "name": "ThePatchster",
+          "team_name": "Run It Back",
+          "points": 76.72,
+          "is_winner": false,
+          "lineup": [
+            {
+              "slot": "QB",
+              "player_id": "7523",
+              "player_name": "Trevor Lawrence",
+              "position": "QB",
+              "points": 24.12
+            },
+            {
+              "slot": "RB",
+              "player_id": "8228",
+              "player_name": "Jaylen Warren",
+              "position": "RB",
+              "points": 6.4
+            },
+            {
+              "slot": "RB",
+              "player_id": "7543",
+              "player_name": "Travis Etienne",
+              "position": "RB",
+              "points": 11.2
+            },
+            {
+              "slot": "WR",
+              "player_id": "5947",
+              "player_name": "Jakobi Meyers",
+              "position": "WR",
+              "points": 7.9
+            },
+            {
+              "slot": "WR",
+              "player_id": "11631",
+              "player_name": "Brian Thomas",
+              "position": "WR",
+              "points": 7.9
+            },
+            {
+              "slot": "TE",
+              "player_id": "9480",
+              "player_name": "Brenton Strange",
+              "position": "TE",
+              "points": 8.4
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "7607",
+              "player_name": "Michael Carter",
+              "position": "RB",
+              "points": 6.3
+            },
+            {
+              "slot": "FLEX",
+              "player_id": "7525",
+              "player_name": "DeVonta Smith",
+              "position": "WR",
+              "points": 4.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
 }
