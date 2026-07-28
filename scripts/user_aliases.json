@@ -1,0 +1,10 @@
+{
+  "_readme": "Merge multiple Sleeper user_ids into one all-time identity for someone who rejoined the league under a new Sleeper account. A simple display_name change does NOT need this - that's already handled automatically since stats are keyed on the immutable user_id. Only add an entry once you've confirmed with the league that both accounts belong to the same person. Format: canonical user_id (their current/most-recent account) -> {aliases: [other user_id(s) that are the same person], display_name: optional fixed label for the All-Time table, otherwise the most recent season's display_name is used}.",
+  "_example": {
+    "470710996982296576": {
+      "aliases": ["999999999999999999"],
+      "display_name": "bh1747"
+    }
+  },
+  "aliases": {}
+}
