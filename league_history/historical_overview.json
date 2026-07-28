@@ -1678,7 +1678,6 @@
               "player_id": "3163",
               "player_name": "Jared Goff",
               "position": "QB",
-              "team": "DET",
               "points": 22.4
             },
             {
@@ -1686,7 +1685,6 @@
               "player_id": "4018",
               "player_name": "Joe Mixon",
               "position": "RB",
-              "team": null,
               "points": 1.2
             },
             {
@@ -1694,7 +1692,6 @@
               "player_id": "2161",
               "player_name": "Jerick McKinnon",
               "position": "RB",
-              "team": null,
               "points": 22.6
             },
             {
@@ -1702,7 +1699,6 @@
               "player_id": "2133",
               "player_name": "Davante Adams",
               "position": "WR",
-              "team": "LAR",
               "points": 34.3
             },
             {
@@ -1710,7 +1706,6 @@
               "player_id": "4068",
               "player_name": "Mike Williams",
               "position": "WR",
-              "team": null,
               "points": 16.4
             },
             {
@@ -1718,7 +1713,6 @@
               "player_id": "5001",
               "player_name": "Dalton Schultz",
               "position": "TE",
-              "team": "HOU",
               "points": 24.6
             },
             {
@@ -1726,7 +1720,6 @@
               "player_id": "4137",
               "player_name": "James Conner",
               "position": "RB",
-              "team": "ARI",
               "points": 14.0
             },
             {
@@ -1734,7 +1727,6 @@
               "player_id": "5892",
               "player_name": "David Montgomery",
               "position": "RB",
-              "team": "HOU",
               "points": 5.6
             }
           ]
@@ -1751,7 +1743,6 @@
               "player_id": "5870",
               "player_name": "Daniel Jones",
               "position": "QB",
-              "team": "IND",
               "points": 36.18
             },
             {
@@ -1759,7 +1750,6 @@
               "player_id": "4866",
               "player_name": "Saquon Barkley",
               "position": "RB",
-              "team": "PHI",
               "points": 7.3
             },
             {
@@ -1767,7 +1757,6 @@
               "player_id": "6828",
               "player_name": "AJ Dillon",
               "position": "RB",
-              "team": "CAR",
               "points": 10.1
             },
             {
@@ -1775,7 +1764,6 @@
               "player_id": "7526",
               "player_name": "Jaylen Waddle",
               "position": "WR",
-              "team": "DEN",
               "points": 8.2
             },
             {
@@ -1783,7 +1771,6 @@
               "player_id": "7525",
               "player_name": "DeVonta Smith",
               "position": "WR",
-              "team": "PHI",
               "points": 20.5
             },
             {
@@ -1791,7 +1778,6 @@
               "player_id": "5012",
               "player_name": "Mark Andrews",
               "position": "TE",
-              "team": "BAL",
               "points": 19.0
             },
             {
@@ -1799,7 +1785,6 @@
               "player_id": "7547",
               "player_name": "Amon-Ra St. Brown",
               "position": "WR",
-              "team": "DET",
               "points": 10.2
             },
             {
@@ -1807,7 +1792,6 @@
               "player_id": "4950",
               "player_name": "Christian Kirk",
               "position": "WR",
-              "team": "SF",
               "points": 4.1
             }
           ]
@@ -1830,7 +1814,6 @@
               "player_id": "3294",
               "player_name": "Dak Prescott",
               "position": "QB",
-              "team": "DAL",
               "points": 21.3
             },
             {
@@ -1838,7 +1821,6 @@
               "player_id": "4663",
               "player_name": "Austin Ekeler",
               "position": "RB",
-              "team": null,
               "points": 4.0
             },
             {
@@ -1846,7 +1828,6 @@
               "player_id": "8139",
               "player_name": "Zamir White",
               "position": "RB",
-              "team": null,
               "points": 15.6
             },
             {
@@ -1854,7 +1835,6 @@
               "player_id": "2216",
               "player_name": "Mike Evans",
               "position": "WR",
-              "team": "SF",
               "points": 10.0
             },
             {
@@ -1862,7 +1842,6 @@
               "player_id": "6786",
               "player_name": "CeeDee Lamb",
               "position": "WR",
-              "team": "DAL",
               "points": 40.2
             },
             {
@@ -1870,7 +1849,6 @@
               "player_id": "8110",
               "player_name": "Jake Ferguson",
               "position": "TE",
-              "team": "DAL",
               "points": 7.3
             },
             {
@@ -1878,7 +1856,6 @@
               "player_id": "9493",
               "player_name": "Puka Nacua",
               "position": "WR",
-              "team": "LAR",
               "points": 18.7
             },
             {
@@ -1886,7 +1863,6 @@
               "player_id": "1426",
               "player_name": "DeAndre Hopkins",
               "position": "WR",
-              "team": null,
               "points": 14.2
             }
           ]
@@ -1903,7 +1879,6 @@
               "player_id": "4881",
               "player_name": "Lamar Jackson",
               "position": "QB",
-              "team": "BAL",
               "points": 36.34
             },
             {
@@ -1911,7 +1886,6 @@
               "player_id": "4035",
               "player_name": "Alvin Kamara",
               "position": "RB",
-              "team": "NO",
               "points": 6.9
             },
             {
@@ -1919,7 +1893,6 @@
               "player_id": "5892",
               "player_name": "David Montgomery",
               "position": "RB",
-              "team": "HOU",
               "points": 12.5
             },
             {
@@ -1927,7 +1900,6 @@
               "player_id": "7564",
               "player_name": "Ja'Marr Chase",
               "position": "WR",
-              "team": "CIN",
               "points": 7.1
             },
             {
@@ -1935,7 +1907,6 @@
               "player_id": "9997",
               "player_name": "Zay Flowers",
               "position": "WR",
-              "team": "BAL",
               "points": 19.6
             },
             {
@@ -1943,7 +1914,6 @@
               "player_id": "7600",
               "player_name": "Pat Freiermuth",
               "position": "TE",
-              "team": "PIT",
               "points": 7.4
             },
             {
@@ -1951,7 +1921,6 @@
               "player_id": "4866",
               "player_name": "Saquon Barkley",
               "position": "RB",
-              "team": "PHI",
               "points": 8.8
             },
             {
@@ -1959,7 +1928,6 @@
               "player_id": "1689",
               "player_name": "Adam Thielen",
               "position": "WR",
-              "team": null,
               "points": 9.8
             }
           ]
@@ -1982,7 +1950,6 @@
               "player_id": "5849",
               "player_name": "Kyler Murray",
               "position": "QB",
-              "team": "MIN",
               "points": 18.04
             },
             {
@@ -1990,7 +1957,6 @@
               "player_id": "9224",
               "player_name": "Chase Brown",
               "position": "RB",
-              "team": "CIN",
               "points": 13.1
             },
             {
@@ -1998,7 +1964,6 @@
               "player_id": "6813",
               "player_name": "Jonathan Taylor",
               "position": "RB",
-              "team": "IND",
               "points": 27.6
             },
             {
@@ -2006,7 +1971,6 @@
               "player_id": "11635",
               "player_name": "Ladd McConkey",
               "position": "WR",
-              "team": "LAC",
               "points": 29.4
             },
             {
@@ -2014,7 +1978,6 @@
               "player_id": "8134",
               "player_name": "Khalil Shakir",
               "position": "WR",
-              "team": "BUF",
               "points": 5.5
             },
             {
@@ -2022,7 +1985,6 @@
               "player_id": "10859",
               "player_name": "Sam LaPorta",
               "position": "TE",
-              "team": "DET",
               "points": 18.4
             },
             {
@@ -2030,7 +1992,6 @@
               "player_id": "8136",
               "player_name": "Rachaad White",
               "position": "RB",
-              "team": "WAS",
               "points": 4.4
             },
             {
@@ -2038,7 +1999,6 @@
               "player_id": "7547",
               "player_name": "Amon-Ra St. Brown",
               "position": "WR",
-              "team": "DET",
               "points": 20.0
             }
           ]
@@ -2055,7 +2015,6 @@
               "player_id": "3163",
               "player_name": "Jared Goff",
               "position": "QB",
-              "team": "DET",
               "points": 25.82
             },
             {
@@ -2063,7 +2022,6 @@
               "player_id": "9226",
               "player_name": "De'Von Achane",
               "position": "RB",
-              "team": "MIA",
               "points": 5.8
             },
             {
@@ -2071,7 +2029,6 @@
               "player_id": "9753",
               "player_name": "Zach Charbonnet",
               "position": "RB",
-              "team": "SEA",
               "points": 10.6
             },
             {
@@ -2079,7 +2036,6 @@
               "player_id": "7564",
               "player_name": "Ja'Marr Chase",
               "position": "WR",
-              "team": "CIN",
               "points": 19.2
             },
             {
@@ -2087,7 +2043,6 @@
               "player_id": "5927",
               "player_name": "Terry McLaurin",
               "position": "WR",
-              "team": "WAS",
               "points": 1.5
             },
             {
@@ -2095,7 +2050,6 @@
               "player_id": "4217",
               "player_name": "George Kittle",
               "position": "TE",
-              "team": "SF",
               "points": 19.2
             },
             {
@@ -2103,7 +2057,6 @@
               "player_id": "11624",
               "player_name": "Xavier Worthy",
               "position": "WR",
-              "team": "KC",
               "points": 22.9
             },
             {
@@ -2111,7 +2064,6 @@
               "player_id": "5045",
               "player_name": "Courtland Sutton",
               "position": "WR",
-              "team": "DEN",
               "points": 16.5
             }
           ]
@@ -2134,7 +2086,6 @@
               "player_id": "12545",
               "player_name": "Tyler Shough",
               "position": "QB",
-              "team": "NO",
               "points": 21.92
             },
             {
@@ -2142,7 +2093,6 @@
               "player_id": "5850",
               "player_name": "Josh Jacobs",
               "position": "RB",
-              "team": "GB",
               "points": 1.3
             },
             {
@@ -2150,7 +2100,6 @@
               "player_id": "12507",
               "player_name": "Omarion Hampton",
               "position": "RB",
-              "team": "LAC",
               "points": 20.0
             },
             {
@@ -2158,7 +2107,6 @@
               "player_id": "12526",
               "player_name": "Tetairoa McMillan",
               "position": "WR",
-              "team": "CAR",
               "points": 1.5
             },
             {
@@ -2166,7 +2114,6 @@
               "player_id": "2449",
               "player_name": "Stefon Diggs",
               "position": "WR",
-              "team": null,
               "points": 22.1
             },
             {
@@ -2174,7 +2121,6 @@
               "player_id": "5022",
               "player_name": "Dallas Goedert",
               "position": "TE",
-              "team": "PHI",
               "points": 9.8
             },
             {
@@ -2182,7 +2128,6 @@
               "player_id": "8112",
               "player_name": "Drake London",
               "position": "WR",
-              "team": "ATL",
               "points": 1.4
             },
             {
@@ -2190,7 +2135,6 @@
               "player_id": "9493",
               "player_name": "Puka Nacua",
               "position": "WR",
-              "team": "LAR",
               "points": 15.7
             }
           ]
@@ -2207,7 +2151,6 @@
               "player_id": "7523",
               "player_name": "Trevor Lawrence",
               "position": "QB",
-              "team": "JAX",
               "points": 24.12
             },
             {
@@ -2215,7 +2158,6 @@
               "player_id": "8228",
               "player_name": "Jaylen Warren",
               "position": "RB",
-              "team": "PIT",
               "points": 6.4
             },
             {
@@ -2223,7 +2165,6 @@
               "player_id": "7543",
               "player_name": "Travis Etienne",
               "position": "RB",
-              "team": "NO",
               "points": 11.2
             },
             {
@@ -2231,7 +2172,6 @@
               "player_id": "5947",
               "player_name": "Jakobi Meyers",
               "position": "WR",
-              "team": "JAX",
               "points": 7.9
             },
             {
@@ -2239,7 +2179,6 @@
               "player_id": "11631",
               "player_name": "Brian Thomas",
               "position": "WR",
-              "team": "JAX",
               "points": 7.9
             },
             {
@@ -2247,7 +2186,6 @@
               "player_id": "9480",
               "player_name": "Brenton Strange",
               "position": "TE",
-              "team": "JAX",
               "points": 8.4
             },
             {
@@ -2255,7 +2193,6 @@
               "player_id": "7607",
               "player_name": "Michael Carter",
               "position": "RB",
-              "team": "TEN",
               "points": 6.3
             },
             {
@@ -2263,7 +2200,6 @@
               "player_id": "7525",
               "player_name": "DeVonta Smith",
               "position": "WR",
-              "team": "PHI",
               "points": 4.5
             }
           ]

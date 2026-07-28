@@ -22,19 +22,23 @@ def team_name_for(user_by_id, owner_id):
     return (u.get("metadata") or {}).get("team_name") or u.get("display_name", "Unknown")
 
 def build_lineup(week_entry, roster_positions, players_cache):
+    # No "team" field here deliberately - Sleeper's player list only has a
+    # player's current team, not who they played for that historical
+    # season, and showing a wrong team is worse than not showing one.
+    # Position is included since it's far more stable over a career.
     starters = week_entry.get("starters", [])
     starters_points = week_entry.get("starters_points", [])
     lineup = []
     for slot, pid, pts in zip(roster_positions, starters, starters_points):
         if not pid or pid == "0":
-            lineup.append({"slot": slot, "player_id": None, "player_name": "Empty", "position": None, "team": None, "points": round(pts, 2)})
+            lineup.append({"slot": slot, "player_id": None, "player_name": "Empty", "position": None, "points": round(pts, 2)})
             continue
         p = players_cache.get(pid)
         if p:
-            name, position, team = p["full_name"], p["position"], p["team"]
+            name, position = p["full_name"], p["position"]
         else:
-            name, position, team = f"Unknown Player ({pid})", None, None
-        lineup.append({"slot": slot, "player_id": pid, "player_name": name, "position": position, "team": team, "points": round(pts, 2)})
+            name, position = f"Unknown Player ({pid})", None
+        lineup.append({"slot": slot, "player_id": pid, "player_name": name, "position": position, "points": round(pts, 2)})
     return lineup
 
 def load_aliases():

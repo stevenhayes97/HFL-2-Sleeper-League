@@ -381,8 +381,7 @@ async function initHeadToHeadTab() {
 
 function playerLabel(p) {
   if (p.player_id == null) return p.player_name;
-  const parts = [p.position, p.team].filter(Boolean).join(" - ");
-  return parts ? `${p.player_name} (${parts})` : p.player_name;
+  return p.position ? `${p.player_name} (${p.position})` : p.player_name;
 }
 
 function renderChampionshipTeamHeader(el, team) {
