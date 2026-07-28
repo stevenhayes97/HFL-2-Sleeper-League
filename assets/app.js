@@ -191,5 +191,54 @@ async function initHistoryTab() {
   renderSeason(defaultYear);
 }
 
+// ---------- Historical Overview tab ----------
+
+function scoreCell(entry) {
+  if (!entry || entry.points == null) return "&mdash;";
+  return `${entry.name} (${entry.points})`;
+}
+
+async function initOverviewTab() {
+  const overview = await fetchJSON(`${DATA_DIR}/historical_overview.json`);
+
+  const yearsBody = document.querySelector("#overview-years-table tbody");
+  yearsBody.innerHTML = overview.years
+    .slice()
+    .sort((a, b) => b.season - a.season)
+    .map(
+      (y) => `
+        <tr>
+          <td>${y.season}</td>
+          <td>${y.champion.name || "&mdash;"}</td>
+          <td>${scoreCell(y.highest_score)}</td>
+          <td>${scoreCell(y.lowest_score)}</td>
+          <td>${scoreCell(y.scoring_title)}</td>
+        </tr>`
+    )
+    .join("");
+
+  const allTimeBody = document.querySelector("#overview-alltime-table tbody");
+  allTimeBody.innerHTML = overview.all_time
+    .map(
+      (r) => `
+        <tr>
+          <td>${r.name}</td>
+          <td>${r.wins}</td>
+          <td>${r.losses}</td>
+          <td>${r.win_pct}%</td>
+          <td>${r.points_for.toFixed(2)}</td>
+          <td>${r.points_against.toFixed(2)}</td>
+          <td>${r.differential.toFixed(2)}</td>
+          <td>${r.playoff_wins}</td>
+          <td>${r.seasons_played}</td>
+        </tr>`
+    )
+    .join("");
+
+  document.getElementById("overview-loading").classList.add("hidden");
+  document.getElementById("overview-content").classList.remove("hidden");
+}
+
 loadHomeStatus();
 initHistoryTab();
+initOverviewTab();

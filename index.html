@@ -13,6 +13,7 @@
   <nav class="tabs">
     <button class="tab-btn active" data-tab="home">Home</button>
     <button class="tab-btn" data-tab="history">League History</button>
+    <button class="tab-btn" data-tab="overview">Historical Overview</button>
   </nav>
 </header>
 
@@ -67,6 +68,50 @@
             <tbody></tbody>
           </table>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tab-overview" class="tab-panel">
+    <h2>Historical Overview</h2>
+    <p id="overview-loading">Loading historical data&hellip;</p>
+
+    <div id="overview-content" class="hidden">
+      <h3>Year by Year</h3>
+      <div class="table-wrap">
+        <table id="overview-years-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Champion</th>
+              <th>Highest Score</th>
+              <th>Lowest Score</th>
+              <th>Scoring Title</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <h3>All-Time</h3>
+      <p class="note">Grouped by Sleeper username, since team names change year to year. Includes anyone who has ever played in the league, even if they've since left or missed a season.</p>
+      <div class="table-wrap">
+        <table id="overview-alltime-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Wins</th>
+              <th>Losses</th>
+              <th>Win %</th>
+              <th>Points For</th>
+              <th>Points Against</th>
+              <th>Differential</th>
+              <th>Playoff Wins</th>
+              <th>Seasons Played</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
       </div>
     </div>
   </section>

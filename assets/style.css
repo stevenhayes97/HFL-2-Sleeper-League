@@ -127,3 +127,9 @@ tbody tr:nth-child(even) {
 .hidden {
   display: none;
 }
+
+.note {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+}
