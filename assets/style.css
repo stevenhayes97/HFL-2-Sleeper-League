@@ -37,6 +37,13 @@ body {
 .tabs {
   display: flex;
   gap: 0.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab-btn {
@@ -49,6 +56,8 @@ body {
   letter-spacing: 0.03em;
   cursor: pointer;
   color: var(--muted);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .tab-btn:hover {
