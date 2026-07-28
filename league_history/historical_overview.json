@@ -1,0 +1,318 @@
+{
+  "years": [
+    {
+      "season": "2022",
+      "champion": {
+        "user_id": "470779963310600192",
+        "name": "GenieOW"
+      },
+      "highest_score": {
+        "user_id": "859698267162787840",
+        "name": "foxok",
+        "points": 202.16,
+        "week": 2
+      },
+      "lowest_score": {
+        "user_id": "332049565748326400",
+        "name": "stolenfaun",
+        "points": 69.84,
+        "week": 13
+      },
+      "scoring_title": {
+        "user_id": "862888169446682624",
+        "name": "Kaaad",
+        "points": 1763.6
+      }
+    },
+    {
+      "season": "2023",
+      "champion": {
+        "user_id": "470710996982296576",
+        "name": "bh1747"
+      },
+      "highest_score": {
+        "user_id": "862888169446682624",
+        "name": "Kaaad",
+        "points": 165.44,
+        "week": 4
+      },
+      "lowest_score": {
+        "user_id": "756019433033785344",
+        "name": "StarForce",
+        "points": 53.38,
+        "week": 1
+      },
+      "scoring_title": {
+        "user_id": "470710996982296576",
+        "name": "bh1747",
+        "points": 1769.66
+      }
+    },
+    {
+      "season": "2024",
+      "champion": {
+        "user_id": "475101158801666048",
+        "name": "ThePatchster"
+      },
+      "highest_score": {
+        "user_id": "993271725775175680",
+        "name": "Kenobii",
+        "points": 164.1,
+        "week": 9
+      },
+      "lowest_score": {
+        "user_id": "475101158801666048",
+        "name": "ThePatchster",
+        "points": 66.7,
+        "week": 12
+      },
+      "scoring_title": {
+        "user_id": "756019433033785344",
+        "name": "StarForce",
+        "points": 1771.34
+      }
+    },
+    {
+      "season": "2025",
+      "champion": {
+        "user_id": "743367607524126720",
+        "name": "nahopih"
+      },
+      "highest_score": {
+        "user_id": "993271725775175680",
+        "name": "Kenobii",
+        "points": 192.46,
+        "week": 7
+      },
+      "lowest_score": {
+        "user_id": "743367607524126720",
+        "name": "nahopih",
+        "points": 48.46,
+        "week": 13
+      },
+      "scoring_title": {
+        "user_id": "993271725775175680",
+        "name": "Kenobii",
+        "points": 1718.52
+      }
+    }
+  ],
+  "all_time": [
+    {
+      "user_id": "756019433033785344",
+      "name": "StarForce",
+      "wins": 35,
+      "losses": 21,
+      "win_pct": 63,
+      "points_for": 6425.06,
+      "points_against": 6263.12,
+      "differential": 161.94,
+      "playoff_wins": 1,
+      "seasons_played": 4
+    },
+    {
+      "user_id": "861012415062601728",
+      "name": "berkley97",
+      "wins": 30,
+      "losses": 26,
+      "win_pct": 54,
+      "points_for": 6384.14,
+      "points_against": 6248.06,
+      "differential": 136.08,
+      "playoff_wins": 0,
+      "seasons_played": 4
+    },
+    {
+      "user_id": "862888169446682624",
+      "name": "Kaaad",
+      "wins": 28,
+      "losses": 28,
+      "win_pct": 50,
+      "points_for": 6355.92,
+      "points_against": 6511.58,
+      "differential": -155.66,
+      "playoff_wins": 0,
+      "seasons_played": 4
+    },
+    {
+      "user_id": "471534616600113152",
+      "name": "themlgmuk",
+      "wins": 25,
+      "losses": 31,
+      "win_pct": 45,
+      "points_for": 6207.26,
+      "points_against": 6531.82,
+      "differential": -324.56,
+      "playoff_wins": 0,
+      "seasons_played": 4
+    },
+    {
+      "user_id": "470710996982296576",
+      "name": "bh1747",
+      "wins": 24,
+      "losses": 32,
+      "win_pct": 43,
+      "points_for": 6641.5,
+      "points_against": 6539.02,
+      "differential": 102.48,
+      "playoff_wins": 2,
+      "seasons_played": 4
+    },
+    {
+      "user_id": "859698267162787840",
+      "name": "foxicca",
+      "wins": 22,
+      "losses": 20,
+      "win_pct": 52,
+      "points_for": 4837.82,
+      "points_against": 4832.82,
+      "differential": 5.0,
+      "playoff_wins": 2,
+      "seasons_played": 3
+    },
+    {
+      "user_id": "993271725775175680",
+      "name": "Kenobii",
+      "wins": 20,
+      "losses": 22,
+      "win_pct": 48,
+      "points_for": 4913.18,
+      "points_against": 4863.82,
+      "differential": 49.36,
+      "playoff_wins": 2,
+      "seasons_played": 3
+    },
+    {
+      "user_id": "743367607524126720",
+      "name": "nahopih",
+      "wins": 20,
+      "losses": 8,
+      "win_pct": 71,
+      "points_for": 3279.84,
+      "points_against": 3014.36,
+      "differential": 265.48,
+      "playoff_wins": 3,
+      "seasons_played": 2
+    },
+    {
+      "user_id": "475101158801666048",
+      "name": "ThePatchster",
+      "wins": 15,
+      "losses": 13,
+      "win_pct": 54,
+      "points_for": 3031.92,
+      "points_against": 2864.62,
+      "differential": 167.3,
+      "playoff_wins": 5,
+      "seasons_played": 2
+    },
+    {
+      "user_id": "1121987861147906048",
+      "name": "ortegalogan115",
+      "wins": 14,
+      "losses": 14,
+      "win_pct": 50,
+      "points_for": 3025.3,
+      "points_against": 3099.22,
+      "differential": -73.92,
+      "playoff_wins": 0,
+      "seasons_played": 2
+    },
+    {
+      "user_id": "865784499802357760",
+      "name": "brian2613",
+      "wins": 11,
+      "losses": 17,
+      "win_pct": 39,
+      "points_for": 2743.66,
+      "points_against": 2976.3,
+      "differential": -232.64,
+      "playoff_wins": 0,
+      "seasons_played": 2
+    },
+    {
+      "user_id": "470779963310600192",
+      "name": "GenieOW",
+      "wins": 10,
+      "losses": 4,
+      "win_pct": 71,
+      "points_for": 1708.44,
+      "points_against": 1570.44,
+      "differential": 138.0,
+      "playoff_wins": 3,
+      "seasons_played": 1
+    },
+    {
+      "user_id": "738274301626740736",
+      "name": "DuckerGames",
+      "wins": 9,
+      "losses": 19,
+      "win_pct": 32,
+      "points_for": 3081.06,
+      "points_against": 3269.3,
+      "differential": -188.24,
+      "playoff_wins": 0,
+      "seasons_played": 2
+    },
+    {
+      "user_id": "471379275656720384",
+      "name": "CannedCoochie",
+      "wins": 9,
+      "losses": 5,
+      "win_pct": 64,
+      "points_for": 1550.22,
+      "points_against": 1448.46,
+      "differential": 101.76,
+      "playoff_wins": 0,
+      "seasons_played": 1
+    },
+    {
+      "user_id": "999411623972442112",
+      "name": "FlawlessAerial",
+      "wins": 8,
+      "losses": 6,
+      "win_pct": 57,
+      "points_for": 1730.66,
+      "points_against": 1602.24,
+      "differential": 128.42,
+      "playoff_wins": 2,
+      "seasons_played": 1
+    },
+    {
+      "user_id": "1252841762464989184",
+      "name": "Pepperean",
+      "wins": 7,
+      "losses": 7,
+      "win_pct": 50,
+      "points_for": 1589.5,
+      "points_against": 1545.28,
+      "differential": 44.22,
+      "playoff_wins": 0,
+      "seasons_played": 1
+    },
+    {
+      "user_id": "1253426395581788160",
+      "name": "Lawson7",
+      "wins": 5,
+      "losses": 9,
+      "win_pct": 36,
+      "points_for": 1462.52,
+      "points_against": 1544.5,
+      "differential": -81.98,
+      "playoff_wins": 0,
+      "seasons_played": 1
+    },
+    {
+      "user_id": "332049565748326400",
+      "name": "stolenfaun",
+      "wins": 2,
+      "losses": 12,
+      "win_pct": 14,
+      "points_for": 1448.82,
+      "points_against": 1691.86,
+      "differential": -243.04,
+      "playoff_wins": 0,
+      "seasons_played": 1
+    }
+  ]
+}
