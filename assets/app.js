@@ -169,7 +169,11 @@ async function initHistoryTab() {
   const index = await fetchJSON(`${DATA_DIR}/index.json`);
   const years = index.map((entry) => entry.season).sort((a, b) => b - a);
 
-  const defaultYear = index.find((e) => e.status === "complete") ? index.find((e) => e.status === "complete").season : years[0];
+  // index.json is ordered newest-to-oldest, so the first entry whose draft
+  // has completed is the most recent season worth defaulting to.
+  const draftCompleted = (status) => status !== "pre_draft" && status !== "drafting";
+  const defaultEntry = index.find((e) => draftCompleted(e.status)) || index[index.length - 1];
+  const defaultYear = defaultEntry.season;
 
   const selector = document.getElementById("year-selector");
   selector.innerHTML = years
