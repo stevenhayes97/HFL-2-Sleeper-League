@@ -1,7 +1,9 @@
 import json
 import os
 
-DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "league_history")
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = os.path.join(SCRIPT_DIR, "..", "league_history")
+ALIASES_PATH = os.path.join(SCRIPT_DIR, "user_aliases.json")
 
 def load(season, name):
     with open(os.path.join(DATA_DIR, season, name)) as f:
@@ -10,12 +12,29 @@ def load(season, name):
 def fpts_total(settings, prefix):
     return (settings.get(f"{prefix}") or 0) + (settings.get(f"{prefix}_decimal") or 0) / 100
 
+def load_aliases():
+    with open(ALIASES_PATH) as f:
+        aliases = json.load(f).get("aliases", {})
+    alias_to_canonical = {}
+    display_name_overrides = {}
+    for canonical_id, info in aliases.items():
+        for alias_id in info.get("aliases", []):
+            alias_to_canonical[alias_id] = canonical_id
+        if info.get("display_name"):
+            display_name_overrides[canonical_id] = info["display_name"]
+    return alias_to_canonical, display_name_overrides
+
 def main():
+    alias_to_canonical, display_name_overrides = load_aliases()
+
+    def canonical(owner_id):
+        return alias_to_canonical.get(owner_id, owner_id)
+
     index = json.load(open(os.path.join(DATA_DIR, "index.json")))
     completed = [e for e in index if e["status"] == "complete"]
     completed.sort(key=lambda e: e["season"])  # oldest -> newest
 
-    all_time = {}  # user_id -> stats accumulator
+    all_time = {}  # canonical user_id -> stats accumulator
     years_out = []
 
     for entry in completed:
@@ -36,9 +55,10 @@ def main():
         # --- season accumulation for all-time table ---
         for r in rosters:
             owner_id = r["owner_id"]
+            canonical_id = canonical(owner_id)
             s = r.get("settings", {})
-            acc = all_time.setdefault(owner_id, {
-                "user_id": owner_id,
+            acc = all_time.setdefault(canonical_id, {
+                "user_id": canonical_id,
                 "wins": 0, "losses": 0,
                 "points_for": 0.0, "points_against": 0.0,
                 "playoff_wins": 0, "seasons_played": 0,
@@ -49,7 +69,12 @@ def main():
             acc["points_for"] += fpts_total(s, "fpts")
             acc["points_against"] += fpts_total(s, "fpts_against")
             acc["seasons_played"] += 1
-            acc["last_display_name"] = name_for(owner_id)  # newest season wins (processed oldest->newest)
+            # Newest season wins (processed oldest->newest), unless a fixed
+            # override name is configured for this canonical identity.
+            if canonical_id not in display_name_overrides:
+                acc["last_display_name"] = name_for(owner_id)
+            else:
+                acc["last_display_name"] = display_name_overrides[canonical_id]
 
         for match in bracket:
             winner_roster = match.get("w")
@@ -62,12 +87,13 @@ def main():
             owner_id = roster_to_owner.get(winner_roster)
             if owner_id is None:
                 continue
-            acc = all_time.setdefault(owner_id, {
-                "user_id": owner_id,
+            canonical_id = canonical(owner_id)
+            acc = all_time.setdefault(canonical_id, {
+                "user_id": canonical_id,
                 "wins": 0, "losses": 0,
                 "points_for": 0.0, "points_against": 0.0,
                 "playoff_wins": 0, "seasons_played": 0,
-                "last_display_name": name_for(owner_id),
+                "last_display_name": display_name_overrides.get(canonical_id, name_for(owner_id)),
             })
             acc["playoff_wins"] += 1
 
