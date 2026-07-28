@@ -334,5 +334,327 @@
     "471379275656720384": "CannedCoochie",
     "1252841762464989184": "Pepperean",
     "1253426395581788160": "Lawson7"
+  },
+  "season_points": {
+    "seasons": [
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "rows": [
+      {
+        "user_id": "470710996982296576",
+        "name": "bh1747",
+        "seasons": {
+          "2022": {
+            "for": 1706.32,
+            "against": 1716.64
+          },
+          "2023": {
+            "for": 1769.66,
+            "against": 1590.44
+          },
+          "2024": {
+            "for": 1505.54,
+            "against": 1692.68
+          },
+          "2025": {
+            "for": 1659.98,
+            "against": 1539.26
+          }
+        },
+        "total_for": 6641.5,
+        "total_against": 6539.02
+      },
+      {
+        "user_id": "859698267162787840",
+        "name": "foxicca",
+        "seasons": {
+          "2022": {
+            "for": 1712.32,
+            "against": 1593.18
+          },
+          "2023": {
+            "for": 1623.8,
+            "against": 1634.5
+          },
+          "2024": {
+            "for": 1501.7,
+            "against": 1605.14
+          }
+        },
+        "total_for": 4837.82,
+        "total_against": 4832.82
+      },
+      {
+        "user_id": "470779963310600192",
+        "name": "GenieOW",
+        "seasons": {
+          "2022": {
+            "for": 1708.44,
+            "against": 1570.44
+          }
+        },
+        "total_for": 1708.44,
+        "total_against": 1570.44
+      },
+      {
+        "user_id": "756019433033785344",
+        "name": "StarForce",
+        "seasons": {
+          "2022": {
+            "for": 1658.4,
+            "against": 1575.52
+          },
+          "2023": {
+            "for": 1529.24,
+            "against": 1532.64
+          },
+          "2024": {
+            "for": 1771.34,
+            "against": 1559.62
+          },
+          "2025": {
+            "for": 1466.08,
+            "against": 1595.34
+          }
+        },
+        "total_for": 6425.06,
+        "total_against": 6263.12
+      },
+      {
+        "user_id": "332049565748326400",
+        "name": "stolenfaun",
+        "seasons": {
+          "2022": {
+            "for": 1448.82,
+            "against": 1691.86
+          }
+        },
+        "total_for": 1448.82,
+        "total_against": 1691.86
+      },
+      {
+        "user_id": "471534616600113152",
+        "name": "themlgmuk",
+        "seasons": {
+          "2022": {
+            "for": 1411.62,
+            "against": 1650.28
+          },
+          "2023": {
+            "for": 1761.16,
+            "against": 1580.74
+          },
+          "2024": {
+            "for": 1668.88,
+            "against": 1575.76
+          },
+          "2025": {
+            "for": 1365.6,
+            "against": 1725.04
+          }
+        },
+        "total_for": 6207.26,
+        "total_against": 6531.82
+      },
+      {
+        "user_id": "861012415062601728",
+        "name": "berkley97",
+        "seasons": {
+          "2022": {
+            "for": 1582.74,
+            "against": 1538.18
+          },
+          "2023": {
+            "for": 1599.94,
+            "against": 1689.82
+          },
+          "2024": {
+            "for": 1663.62,
+            "against": 1620.06
+          },
+          "2025": {
+            "for": 1537.84,
+            "against": 1400.0
+          }
+        },
+        "total_for": 6384.14,
+        "total_against": 6248.06
+      },
+      {
+        "user_id": "862888169446682624",
+        "name": "Kaaad",
+        "seasons": {
+          "2022": {
+            "for": 1763.6,
+            "against": 1553.24
+          },
+          "2023": {
+            "for": 1624.68,
+            "against": 1777.68
+          },
+          "2024": {
+            "for": 1547.66,
+            "against": 1455.46
+          },
+          "2025": {
+            "for": 1419.98,
+            "against": 1725.2
+          }
+        },
+        "total_for": 6355.92,
+        "total_against": 6511.58
+      },
+      {
+        "user_id": "865784499802357760",
+        "name": "brian2613",
+        "seasons": {
+          "2022": {
+            "for": 1426.56,
+            "against": 1547.08
+          },
+          "2023": {
+            "for": 1317.1,
+            "against": 1429.22
+          }
+        },
+        "total_for": 2743.66,
+        "total_against": 2976.3
+      },
+      {
+        "user_id": "738274301626740736",
+        "name": "DuckerGames",
+        "seasons": {
+          "2022": {
+            "for": 1624.22,
+            "against": 1606.62
+          },
+          "2023": {
+            "for": 1456.84,
+            "against": 1662.68
+          }
+        },
+        "total_for": 3081.06,
+        "total_against": 3269.3
+      },
+      {
+        "user_id": "993271725775175680",
+        "name": "Kenobii",
+        "seasons": {
+          "2023": {
+            "for": 1574.62,
+            "against": 1511.3
+          },
+          "2024": {
+            "for": 1620.04,
+            "against": 1706.96
+          },
+          "2025": {
+            "for": 1718.52,
+            "against": 1645.56
+          }
+        },
+        "total_for": 4913.18,
+        "total_against": 4863.82
+      },
+      {
+        "user_id": "743367607524126720",
+        "name": "nahopih",
+        "seasons": {
+          "2023": {
+            "for": 1648.0,
+            "against": 1496.02
+          },
+          "2025": {
+            "for": 1631.84,
+            "against": 1518.34
+          }
+        },
+        "total_for": 3279.84,
+        "total_against": 3014.36
+      },
+      {
+        "user_id": "1121987861147906048",
+        "name": "ortegalogan115",
+        "seasons": {
+          "2024": {
+            "for": 1442.04,
+            "against": 1660.38
+          },
+          "2025": {
+            "for": 1583.26,
+            "against": 1438.84
+          }
+        },
+        "total_for": 3025.3,
+        "total_against": 3099.22
+      },
+      {
+        "user_id": "475101158801666048",
+        "name": "ThePatchster",
+        "seasons": {
+          "2024": {
+            "for": 1544.56,
+            "against": 1517.74
+          },
+          "2025": {
+            "for": 1487.36,
+            "against": 1346.88
+          }
+        },
+        "total_for": 3031.92,
+        "total_against": 2864.62
+      },
+      {
+        "user_id": "999411623972442112",
+        "name": "FlawlessAerial",
+        "seasons": {
+          "2024": {
+            "for": 1730.66,
+            "against": 1602.24
+          }
+        },
+        "total_for": 1730.66,
+        "total_against": 1602.24
+      },
+      {
+        "user_id": "1252841762464989184",
+        "name": "Pepperean",
+        "seasons": {
+          "2025": {
+            "for": 1589.5,
+            "against": 1545.28
+          }
+        },
+        "total_for": 1589.5,
+        "total_against": 1545.28
+      },
+      {
+        "user_id": "471379275656720384",
+        "name": "CannedCoochie",
+        "seasons": {
+          "2025": {
+            "for": 1550.22,
+            "against": 1448.46
+          }
+        },
+        "total_for": 1550.22,
+        "total_against": 1448.46
+      },
+      {
+        "user_id": "1253426395581788160",
+        "name": "Lawson7",
+        "seasons": {
+          "2025": {
+            "for": 1462.52,
+            "against": 1544.5
+          }
+        },
+        "total_for": 1462.52,
+        "total_against": 1544.5
+      }
+    ]
   }
 }

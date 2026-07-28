@@ -147,6 +147,11 @@ tbody tr:last-child td {
   border-bottom: none;
 }
 
+.total-col {
+  font-weight: 700;
+  color: var(--accent);
+}
+
 .hidden {
   display: none;
 }
