@@ -107,7 +107,8 @@ async function renderSeason(season) {
 
   loading.classList.add("hidden");
 
-  if (league.status !== "complete") {
+  const seasonBegun = league.status !== "pre_draft" && league.status !== "drafting";
+  if (!seasonBegun) {
     notStarted.classList.remove("hidden");
     return;
   }
@@ -132,17 +133,28 @@ async function renderSeason(season) {
     .join("");
 
   const placements = buildPlayoffPlacements(bracket, rosters, usersByUserId);
-  const playoffBody = document.querySelector("#playoff-table tbody");
-  playoffBody.innerHTML = placements
-    .map(
-      (row) => `
-        <tr>
-          <td>${row.place === 1 ? "1st (Champion)" : ordinal(row.place)}</td>
-          <td>${row.team}</td>
-          <td>${row.manager}</td>
-        </tr>`
-    )
-    .join("");
+  const playoffNotStarted = document.getElementById("playoff-not-started");
+  const playoffTableWrap = document.getElementById("playoff-table-wrap");
+
+  if (placements.length === 0) {
+    playoffNotStarted.classList.remove("hidden");
+    playoffTableWrap.classList.add("hidden");
+  } else {
+    playoffNotStarted.classList.add("hidden");
+    playoffTableWrap.classList.remove("hidden");
+
+    const playoffBody = document.querySelector("#playoff-table tbody");
+    playoffBody.innerHTML = placements
+      .map(
+        (row) => `
+          <tr>
+            <td>${row.place === 1 ? "1st (Champion)" : ordinal(row.place)}</td>
+            <td>${row.team}</td>
+            <td>${row.manager}</td>
+          </tr>`
+      )
+      .join("");
+  }
 
   tables.classList.remove("hidden");
 }
@@ -157,7 +169,11 @@ async function initHistoryTab() {
   const index = await fetchJSON(`${DATA_DIR}/index.json`);
   const years = index.map((entry) => entry.season).sort((a, b) => b - a);
 
-  const defaultYear = index.find((e) => e.status === "complete") ? index.find((e) => e.status === "complete").season : years[0];
+  // index.json is ordered newest-to-oldest, so the first entry whose draft
+  // has completed is the most recent season worth defaulting to.
+  const draftCompleted = (status) => status !== "pre_draft" && status !== "drafting";
+  const defaultEntry = index.find((e) => draftCompleted(e.status)) || index[index.length - 1];
+  const defaultYear = defaultEntry.season;
 
   const selector = document.getElementById("year-selector");
   selector.innerHTML = years
