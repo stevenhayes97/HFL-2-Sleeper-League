@@ -484,10 +484,10 @@ function draftPickRow(pick) {
 
 function renderDraft(draft) {
   const round1 = draft.picks.filter((p) => p.round === 1);
-  const round1and2 = draft.picks.filter((p) => p.round === 1 || p.round === 2);
+  const round2 = draft.picks.filter((p) => p.round === 2);
 
   document.querySelector("#draft-round1-table tbody").innerHTML = round1.map(draftPickRow).join("");
-  document.querySelector("#draft-round1-2-table tbody").innerHTML = round1and2.map(draftPickRow).join("");
+  document.querySelector("#draft-round2-table tbody").innerHTML = round2.map(draftPickRow).join("");
 }
 
 async function initDraftTab() {
