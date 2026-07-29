@@ -278,3 +278,22 @@ tbody tr:last-child td {
   font-size: 0.78rem;
   letter-spacing: 0.05em;
 }
+
+/* Draft History: rounds 1-2 table scrolls vertically within a fixed height
+   instead of pushing the page out, since it's ~2x as many rows as round 1. */
+.scroll-table {
+  max-height: 26rem;
+  overflow-y: auto;
+}
+
+.scroll-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg-elevated);
+}
+
+.draft-pick-label {
+  color: var(--muted);
+  font-weight: 700;
+}

@@ -469,6 +469,78 @@ async function initChampionshipTab() {
   showYear(defaultYear);
 }
 
+// ---------- Draft History tab ----------
+
+function draftPickRow(pick) {
+  return `
+    <tr>
+      <td class="draft-pick-label">${pick.label}</td>
+      <td>${pick.team_name}</td>
+      <td>${pick.name}</td>
+      <td>${pick.player_name}</td>
+      <td>${pick.position || "&mdash;"}</td>
+    </tr>`;
+}
+
+function renderDraft(draft) {
+  const round1 = draft.picks.filter((p) => p.round === 1);
+  const round1and2 = draft.picks.filter((p) => p.round === 1 || p.round === 2);
+
+  document.querySelector("#draft-round1-table tbody").innerHTML = round1.map(draftPickRow).join("");
+  document.querySelector("#draft-round1-2-table tbody").innerHTML = round1and2.map(draftPickRow).join("");
+}
+
+async function initDraftTab() {
+  const status = document.getElementById("draft-status");
+  const content = document.getElementById("draft-content");
+  const selector = document.getElementById("draft-year-selector");
+
+  let drafts;
+  try {
+    const overview = await loadOverview();
+    drafts = overview.drafts;
+  } catch (e) {
+    status.textContent = `Couldn't load data: ${e.message}. Check your connection and reload.`;
+    return;
+  }
+
+  if (!drafts || drafts.length === 0) {
+    status.textContent = "No draft data available yet.";
+    return;
+  }
+
+  const bySeason = {};
+  drafts.forEach((d) => (bySeason[d.season] = d));
+  const years = Object.keys(bySeason).sort((a, b) => b - a);
+  const defaultYear = years[0];
+
+  selector.innerHTML = years
+    .map((y) => `<button class="year-btn${y === defaultYear ? " active" : ""}" data-year="${y}">${y}</button>`)
+    .join("");
+
+  const showYear = (year) => {
+    try {
+      renderDraft(bySeason[year]);
+      status.classList.add("hidden");
+      content.classList.remove("hidden");
+    } catch (e) {
+      content.classList.add("hidden");
+      status.classList.remove("hidden");
+      status.textContent = `Couldn't render ${year}: ${e.message}.`;
+    }
+  };
+
+  selector.querySelectorAll(".year-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      selector.querySelectorAll(".year-btn").forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      showYear(btn.dataset.year);
+    });
+  });
+
+  showYear(defaultYear);
+}
+
 async function init() {
   await loadCurrentNames();
   loadHomeStatus();
@@ -477,6 +549,7 @@ async function init() {
   initPointsTabs();
   initHeadToHeadTab();
   initChampionshipTab();
+  initDraftTab();
 }
 
 init();
