@@ -41,6 +41,28 @@ def build_lineup(week_entry, roster_positions, players_cache):
         lineup.append({"slot": slot, "player_id": pid, "player_name": name, "position": position, "points": round(pts, 2)})
     return lineup
 
+def build_draft_board(draft_picks, teams, roster_to_owner, user_by_id, name_for):
+    picks_out = []
+    for pick in draft_picks:
+        owner_id = roster_to_owner.get(pick["roster_id"])
+        meta = pick.get("metadata") or {}
+        pick_in_round = pick["pick_no"] - (pick["round"] - 1) * teams
+        first, last = meta.get("first_name"), meta.get("last_name")
+        player_name = f"{first} {last}".strip() if (first or last) else "Unknown Player"
+        picks_out.append({
+            "round": pick["round"],
+            "pick_in_round": pick_in_round,
+            "pick_no": pick["pick_no"],
+            "label": f"{pick['round']}.{pick_in_round}",
+            "team_name": team_name_for(user_by_id, owner_id) if owner_id else "Unknown",
+            "name": name_for(owner_id) if owner_id else "Unknown",
+            "player_name": player_name,
+            "position": meta.get("position"),
+        })
+    picks_out.sort(key=lambda p: p["pick_no"])
+    return picks_out
+
+
 def load_aliases():
     with open(ALIASES_PATH) as f:
         aliases = json.load(f).get("aliases", {})
@@ -95,6 +117,7 @@ def main():
     head_to_head = {}  # canonical user_id -> {opponent canonical user_id: [wins, losses]}
     years_out = []
     championships_out = []
+    drafts_out = []
 
     for entry in completed:
         season = entry["season"]
@@ -257,6 +280,13 @@ def main():
                 ],
             })
 
+        # --- draft board ---
+        draft_picks_entries = load(season, "draft_picks.json")
+        all_picks = [p for entry in draft_picks_entries for p in entry["picks"]]
+        if all_picks:
+            picks = build_draft_board(all_picks, league["total_rosters"], roster_to_owner, user_by_id, name_for)
+            drafts_out.append({"season": season, "picks": picks})
+
     all_time_out = []
     for acc in all_time.values():
         wins, losses = acc["wins"], acc["losses"]
@@ -301,6 +331,7 @@ def main():
         "season_points": {"seasons": season_list, "rows": season_points_out},
         "head_to_head": {"order": h2h_order, "records": head_to_head},
         "championships": championships_out,
+        "drafts": drafts_out,
     }
     with open(os.path.join(DATA_DIR, "historical_overview.json"), "w") as f:
         json.dump(out, f, indent=2)

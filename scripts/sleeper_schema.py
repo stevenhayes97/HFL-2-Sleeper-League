@@ -71,3 +71,12 @@ def check_matchups_week(entries, label):
         require(isinstance(m, dict), f"{label}: a matchups entry is not an object")
         for key in ("roster_id", "matchup_id", "points"):
             require(key in m, f"{label}: a matchups entry missing '{key}'")
+
+
+def check_draft_picks(picks, label):
+    require(isinstance(picks, list), f"{label}: draft picks response is not a list")
+    for p in picks:
+        require(isinstance(p, dict), f"{label}: a draft picks entry is not an object")
+        for key in ("round", "pick_no", "roster_id"):
+            require(key in p, f"{label}: a draft picks entry missing '{key}'")
+        require("metadata" in p and isinstance(p["metadata"], dict), f"{label}: a draft picks entry missing 'metadata'")

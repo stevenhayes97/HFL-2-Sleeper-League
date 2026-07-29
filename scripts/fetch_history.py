@@ -4,7 +4,7 @@ import os
 import sys
 import time
 
-from sleeper_schema import SchemaError, check_league, check_users, check_rosters, check_bracket
+from sleeper_schema import SchemaError, check_league, check_users, check_rosters, check_bracket, check_draft_picks
 
 BASE = "https://api.sleeper.app/v1"
 OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "league_history")
@@ -48,14 +48,27 @@ def main():
             files[fname] = data
             time.sleep(0.3)
 
-        # drafts/traded_picks aren't read anywhere downstream (build_overview.py,
-        # the site) - kept as raw archival data, so only a basic type check.
+        # traded_picks isn't read anywhere downstream (build_overview.py, the
+        # site) - kept as raw archival data, so only a basic type check.
         for endpoint, fname in [("drafts", "drafts.json"), ("traded_picks", "traded_picks.json")]:
             data = fetch(f"{BASE}/league/{league_id}/{endpoint}")
             if not isinstance(data, list):
                 raise SchemaError(f"{label} {endpoint}: expected a list, got {type(data).__name__}")
             files[fname] = data
             time.sleep(0.3)
+
+        # Fetch the actual pick-by-pick results for each draft (usually one
+        # per season). Picks for a draft that hasn't happened yet come back
+        # as an empty list, which is valid - not every draft in drafts.json
+        # is complete.
+        draft_picks = []
+        for draft in files["drafts.json"]:
+            draft_id = draft["draft_id"]
+            picks = fetch(f"{BASE}/draft/{draft_id}/picks")
+            check_draft_picks(picks, f"{label} draft {draft_id} picks")
+            draft_picks.append({"draft_id": draft_id, "picks": picks})
+            time.sleep(0.3)
+        files["draft_picks.json"] = draft_picks
 
         pending.append((season_dir, files))
         print(f"Fetched and validated season {season} (league_id={league_id})")
