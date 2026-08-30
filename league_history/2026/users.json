@@ -142,7 +142,7 @@
     "user_id": "756019433033785344"
   },
   {
-    "avatar": "25f3c84bb7df355a35743b6fdaf85ad5",
+    "avatar": "245308d8d799ffdca4a2633ff16bfcda",
     "display_name": "berkley97",
     "is_bot": false,
     "is_owner": false,
@@ -221,7 +221,7 @@
     "user_id": "993271725775175680"
   },
   {
-    "avatar": "ddb0a1b9b8603097a27d6889513e48ac",
+    "avatar": "3c9f19eec2ae81ca1d4af714d3011311",
     "display_name": "ortegalogan115",
     "is_bot": false,
     "is_owner": false,
@@ -269,9 +269,10 @@
     "league_id": "1382788768955641856",
     "metadata": {
       "allow_pn": "on",
+      "allow_sms": "on",
       "avatar": "https://sleepercdn.com/uploads/7aa5350c97a77ba5cea812f837104f18.jpg",
       "mention_pn": "on",
-      "team_name": "Kyle Pitts Revenge Tour"
+      "team_name": "KP Retirement Tour"
     },
     "settings": null,
     "user_id": "1253426395581788160"
