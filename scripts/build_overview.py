@@ -280,7 +280,21 @@ def main():
                 ],
             })
 
-        # --- draft board ---
+    # --- draft boards ---
+    # Shown as soon as a season's draft has happened, independent of whether
+    # the season itself has finished - matches the site's own "drafted vs.
+    # not yet drafted" distinction (app.js's draftCompleted check) rather
+    # than gating on full season completion like the stats above.
+    drafted = [e for e in index if e["status"] not in ("pre_draft", "drafting")]
+    drafted.sort(key=lambda e: e["season"])
+    for entry in drafted:
+        season = entry["season"]
+        league = load(season, "league.json")
+        users = load(season, "users.json")
+        rosters = load(season, "rosters.json")
+        roster_to_owner = {r["roster_id"]: r["owner_id"] for r in rosters}
+        user_by_id = {u["user_id"]: u for u in users}
+
         draft_picks_entries = load(season, "draft_picks.json")
         all_picks = [p for entry in draft_picks_entries for p in entry["picks"]]
         if all_picks:
