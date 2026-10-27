@@ -60,9 +60,10 @@
   },
   "avatar": "34fc2461fd01659f8c7fb98bc9718acc",
   "company_id": null,
-  "sport": "nfl",
-  "season_type": "regular",
+  "shard": 797,
   "season": "2024",
+  "season_type": "regular",
+  "sport": "nfl",
   "scoring_settings": {
     "sack": 1.0,
     "fgm_40_49": 4.0,
@@ -107,7 +108,6 @@
     "pts_allow_7_13": 4.0,
     "st_ff": 1.0
   },
-  "shard": 797,
   "last_message_id": "1228820357671038976",
   "draft_id": "1124716443586719745",
   "last_author_avatar": "493701265064aaaabcd9c9e5406102cb",
@@ -121,6 +121,11 @@
   "last_read_id": null,
   "league_id": "1124716443586719744",
   "previous_league_id": "991942084397490176",
+  "bracket_id": 1172493794235392000,
+  "bracket_overrides_id": null,
+  "group_id": null,
+  "loser_bracket_id": 1172493794243780608,
+  "loser_bracket_overrides_id": null,
   "roster_positions": [
     "QB",
     "RB",
@@ -138,10 +143,5 @@
     "BN",
     "BN"
   ],
-  "group_id": null,
-  "bracket_id": 1172493794235392000,
-  "bracket_overrides_id": null,
-  "loser_bracket_id": 1172493794243780608,
-  "loser_bracket_overrides_id": null,
   "total_rosters": 10
 }
