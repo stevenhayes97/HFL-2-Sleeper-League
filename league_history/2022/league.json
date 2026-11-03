@@ -60,10 +60,10 @@
   },
   "avatar": "34fc2461fd01659f8c7fb98bc9718acc",
   "company_id": null,
-  "shard": 506,
-  "season": "2022",
-  "season_type": "regular",
   "sport": "nfl",
+  "season_type": "regular",
+  "season": "2022",
+  "shard": 506,
   "scoring_settings": {
     "sack": 1.0,
     "fgm_40_49": 4.0,
@@ -121,11 +121,7 @@
   "last_read_id": null,
   "league_id": "849042229170372608",
   "previous_league_id": null,
-  "bracket_id": 908641807716741120,
-  "bracket_overrides_id": null,
   "group_id": null,
-  "loser_bracket_id": 908641807720935424,
-  "loser_bracket_overrides_id": null,
   "roster_positions": [
     "QB",
     "RB",
@@ -143,5 +139,9 @@
     "BN",
     "BN"
   ],
+  "bracket_id": 908641807716741120,
+  "bracket_overrides_id": null,
+  "loser_bracket_id": 908641807720935424,
+  "loser_bracket_overrides_id": null,
   "total_rosters": 10
 }
