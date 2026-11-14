@@ -60,6 +60,7 @@
   },
   "avatar": "34fc2461fd01659f8c7fb98bc9718acc",
   "company_id": null,
+  "league_id": "991942084397490176",
   "shard": 310,
   "season": "2023",
   "season_type": "regular",
@@ -119,8 +120,8 @@
   "last_message_time": 1723215614956,
   "last_pinned_message_id": null,
   "last_read_id": null,
-  "league_id": "991942084397490176",
   "previous_league_id": "849042229170372608",
+  "bracket_id": 1045835584788320256,
   "roster_positions": [
     "QB",
     "RB",
@@ -138,7 +139,6 @@
     "BN",
     "BN"
   ],
-  "bracket_id": 1045835584788320256,
   "bracket_overrides_id": null,
   "group_id": null,
   "loser_bracket_id": 1045835584796708864,
